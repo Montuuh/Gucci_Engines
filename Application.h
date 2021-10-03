@@ -8,6 +8,7 @@
 #include "ModuleInput.h"
 #include "ModuleRenderer3D.h"
 #include "ModuleCamera3D.h"
+#include "ModuleUI.h"
 
 
 class Application
@@ -15,6 +16,7 @@ class Application
 public:
 	ModuleWindow* window;
 	ModuleInput* input;
+	ModuleUI* UI;
 	ModuleRenderer3D* renderer3D;
 	ModuleCamera3D* camera;
 
