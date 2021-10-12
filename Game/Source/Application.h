@@ -1,6 +1,6 @@
-#pragma once
+#ifndef __APPLICATION_H__
+#define __APPLICATION_H__
 
-#include "p2List.h"
 #include "Globals.h"
 #include "Timer.h"
 #include "Module.h"
@@ -24,7 +24,7 @@ private:
 
 	Timer	ms_timer;
 	float	dt;
-	p2List<Module*> list_modules;
+	std::vector<Module*> list_modules;
 
 public:
 
@@ -41,3 +41,5 @@ private:
 	void PrepareUpdate();
 	void FinishUpdate();
 };
+
+#endif

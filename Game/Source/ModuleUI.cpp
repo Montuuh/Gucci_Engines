@@ -48,6 +48,7 @@ update_status ModuleUI::PreUpdate(float dt)
     // Main Menu Bar
     ImGui::BeginMainMenuBar();
     if (ImGui::MenuItem("Quit")) return UPDATE_STOP;
+    ImGui::MenuItem("Holi");
     ImGui::EndMainMenuBar();
 
 	return UPDATE_CONTINUE;
@@ -76,6 +77,8 @@ void ModuleUI::SetTitle(const char* title)
 
 bool ModuleUI::CleanUp()
 {
+    LOG("Destroying Imgui interface");
+
     // ImGui CleanUp
     ImGui_ImplOpenGL2_Shutdown();
     ImGui_ImplSDL2_Shutdown();
