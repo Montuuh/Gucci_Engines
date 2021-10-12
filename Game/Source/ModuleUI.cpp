@@ -64,7 +64,9 @@ update_status ModuleUI::PreUpdate(float dt)
 
 update_status ModuleUI::Update(float dt)
 {
+    // Show help imgui window
     ImGui::ShowDemoWindow();
+
 	return UPDATE_CONTINUE;
 }
 
