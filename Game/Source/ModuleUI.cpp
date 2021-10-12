@@ -20,30 +20,52 @@ ModuleUI::~ModuleUI()
 // Called before render is available
 bool ModuleUI::Init()
 {
-    // Application init: create a dear imgui context, setup some options, load fonts
+    bool ret = true;
+
+    LOG("Starting Module UI");
+
+    // Application init: create a dear imgui context, setup some options, load fonts...
+    IMGUI_CHECKVERSION();
     ImGui::CreateContext();
-    ImGuiIO& io = ImGui::GetIO();
+
+    ImGuiIO& io = ImGui::GetIO(); (void)io;
     io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;
 
-    // Application main loop
-
-    // ImGui Inits
+    // ImGui Init & Backends Init
     ImGui_ImplOpenGL2_Init();
     ImGui_ImplSDL2_InitForOpenGL(App->window->window, App->renderer3D->context);
 
+    // Style Initialization
     ImGui::StyleColorsClassic;
 
-	return true;
+	return ret;
 }
 
+bool ModuleUI::Start()
+{
+    bool ret = true;
 
+    demoWindow = false;
+
+    return ret;
+}
 
 update_status ModuleUI::PreUpdate(float dt)
 {
     // Create ImGui new frames
     ImGui_ImplOpenGL2_NewFrame();
-    ImGui_ImplSDL2_NewFrame();
+    ImGui_ImplSDL2_NewFrame(App->window->window);
     ImGui::NewFrame();
+
+	return update_status::UPDATE_CONTINUE;
+}
+
+update_status ModuleUI::Update(float dt)
+{
+    update_status status = update_status::UPDATE_CONTINUE;
+
+    // Show help imgui window
+    if (demoWindow) ImGui::ShowDemoWindow();
 
     // Main Menu Bar
     ImGui::BeginMainMenuBar();
@@ -51,33 +73,22 @@ update_status ModuleUI::PreUpdate(float dt)
     ImGui::MenuItem("Holi");
     ImGui::EndMainMenuBar();
 
-	return UPDATE_CONTINUE;
-}
-
-update_status ModuleUI::Update(float dt)
-{
-    // Show help imgui window
-    ImGui::ShowDemoWindow();
-
-	return UPDATE_CONTINUE;
+	return status;
 }
 
 update_status ModuleUI::PostUpdate(float dt)
 {
+    ImGui::EndFrame();
+
     ImGui::Render();
     ImGui_ImplOpenGL2_RenderDrawData(ImGui::GetDrawData());
 
 	return UPDATE_CONTINUE;
 }
 
-void ModuleUI::SetTitle(const char* title)
-{
-
-}
-
 bool ModuleUI::CleanUp()
 {
-    LOG("Destroying Imgui interface");
+    LOG("Destroying Module UI");
 
     // ImGui CleanUp
     ImGui_ImplOpenGL2_Shutdown();

@@ -382,6 +382,7 @@
     <ClInclude Include="Source\External\MathGeoLib\include\MathBuildConfig.h" />
     <ClInclude Include="Source\External\MathGeoLib\include\MathGeoLib.h" />
     <ClInclude Include="Source\External\MathGeoLib\include\MathGeoLibFwd.h" />
+    <ClInclude Include="Source\GuiPanel.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\External\imgui\include\imgui.cpp">

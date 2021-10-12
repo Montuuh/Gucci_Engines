@@ -227,6 +227,7 @@
     <ClInclude Include="Source\External\SDL\include\SDL_vulkan.h" />
     <ClInclude Include="Source\glmath.h" />
     <ClInclude Include="Source\Globals.h" />
+    <ClInclude Include="Source\GuiPanel.h" />
     <ClInclude Include="Source\Light.h" />
     <ClInclude Include="Source\Module.h" />
     <ClInclude Include="Source\ModuleCamera3D.h" />
