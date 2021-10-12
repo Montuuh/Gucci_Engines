@@ -3,11 +3,6 @@
 #define __ModuleUI_H__
 
 #include "Module.h"
-#include "SDL/include/SDL.h"
-#include "imgui.h"
-#include "imgui_internal.h"
-#include "imgui_impl_sdl.h"
-#include "imgui_impl_opengl2.h"
 
 class Application;
 

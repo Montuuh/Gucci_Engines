@@ -6,16 +6,10 @@
 #include "imgui\include\imgui_impl_opengl2.h"
 #include "imgui\include\imgui_impl_sdl.h"
 
+#include "MathGeoLib/include/MathGeoLib.h"
+
 ModuleUI::ModuleUI(Application* app, bool start_enabled) : Module(app, start_enabled)
 {
-
-   
-
-
-    
-
-
-
 }
 
 // Destructor
@@ -29,9 +23,7 @@ bool ModuleUI::Init()
     // Application init: create a dear imgui context, setup some options, load fonts
     ImGui::CreateContext();
     ImGuiIO& io = ImGui::GetIO();
-
     io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;
-
 
     // Application main loop
 
@@ -57,7 +49,6 @@ update_status ModuleUI::PreUpdate(float dt)
     ImGui::BeginMainMenuBar();
     if (ImGui::MenuItem("Quit")) return UPDATE_STOP;
     ImGui::EndMainMenuBar();
-
 
 	return UPDATE_CONTINUE;
 }
@@ -85,9 +76,10 @@ void ModuleUI::SetTitle(const char* title)
 
 bool ModuleUI::CleanUp()
 {
-    /*ImGui_ImplOpenGL2_Shutdown();
+    // ImGui CleanUp
+    ImGui_ImplOpenGL2_Shutdown();
     ImGui_ImplSDL2_Shutdown();
     ImGui::DestroyContext();
-    ImGui::End();*/
+
     return true;
 }
