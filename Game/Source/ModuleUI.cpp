@@ -2,6 +2,10 @@
 #include "Application.h"
 #include "ModuleUI.h"
 
+#include "imgui\include\imgui.h"
+#include "imgui\include\imgui_impl_opengl2.h"
+#include "imgui\include\imgui_impl_sdl.h"
+
 ModuleUI::ModuleUI(Application* app, bool start_enabled) : Module(app, start_enabled)
 {
 
@@ -31,7 +35,7 @@ bool ModuleUI::Init()
 
     // Application main loop
 
-
+    // ImGui Inits
     ImGui_ImplOpenGL2_Init();
     ImGui_ImplSDL2_InitForOpenGL(App->window->window, App->renderer3D->context);
 
@@ -44,22 +48,30 @@ bool ModuleUI::Init()
 
 update_status ModuleUI::PreUpdate(float dt)
 {
-    //ImGui_ImplOpenGL2_NewFrame();
-    //ImGui_ImplSDL2_NewFrame();
-    //ImGui::NewFrame();
-    //ImGui::EndFrame();
+    // Create ImGui new frames
+    ImGui_ImplOpenGL2_NewFrame();
+    ImGui_ImplSDL2_NewFrame();
+    ImGui::NewFrame();
+
+    // Main Menu Bar
+    ImGui::BeginMainMenuBar();
+    if (ImGui::MenuItem("Quit")) return UPDATE_STOP;
+    ImGui::EndMainMenuBar();
+
 
 	return UPDATE_CONTINUE;
 }
 
 update_status ModuleUI::Update(float dt)
 {
-
+    ImGui::ShowDemoWindow();
 	return UPDATE_CONTINUE;
 }
 
 update_status ModuleUI::PostUpdate(float dt)
 {
+    ImGui::Render();
+    ImGui_ImplOpenGL2_RenderDrawData(ImGui::GetDrawData());
 
 	return UPDATE_CONTINUE;
 }
@@ -71,9 +83,9 @@ void ModuleUI::SetTitle(const char* title)
 
 bool ModuleUI::CleanUp()
 {
-    ImGui_ImplOpenGL2_Shutdown();
+    /*ImGui_ImplOpenGL2_Shutdown();
     ImGui_ImplSDL2_Shutdown();
     ImGui::DestroyContext();
-    /*ImGui::End();*/
+    ImGui::End();*/
     return true;
 }
