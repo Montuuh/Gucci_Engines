@@ -309,6 +309,22 @@
     <ClInclude Include="Source\External\SDL\include\SDL_vulkan.h">
       <Filter>External\SDL</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Application.h" />
+    <ClInclude Include="Source\Color.h" />
+    <ClInclude Include="Source\glmath.h" />
+    <ClInclude Include="Source\Globals.h" />
+    <ClInclude Include="Source\Light.h" />
+    <ClInclude Include="Source\Module.h" />
+    <ClInclude Include="Source\ModuleCamera3D.h" />
+    <ClInclude Include="Source\ModuleInput.h" />
+    <ClInclude Include="Source\ModuleRenderer3D.h" />
+    <ClInclude Include="Source\ModuleUI.h" />
+    <ClInclude Include="Source\ModuleWindow.h" />
+    <ClInclude Include="Source\p2DynArray.h" />
+    <ClInclude Include="Source\p2List.h" />
+    <ClInclude Include="Source\p2Point.h" />
+    <ClInclude Include="Source\Primitive.h" />
+    <ClInclude Include="Source\Timer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\External\imgui\include\imgui.cpp">
@@ -332,6 +348,19 @@
     <ClCompile Include="Source\External\imgui\include\imgui_widgets.cpp">
       <Filter>External\Imgui</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Application.cpp" />
+    <ClCompile Include="Source\Color.cpp" />
+    <ClCompile Include="Source\glmath.cpp" />
+    <ClCompile Include="Source\Light.cpp" />
+    <ClCompile Include="Source\log.cpp" />
+    <ClCompile Include="Source\Main.cpp" />
+    <ClCompile Include="Source\ModuleCamera3D.cpp" />
+    <ClCompile Include="Source\ModuleInput.cpp" />
+    <ClCompile Include="Source\ModuleRenderer3D.cpp" />
+    <ClCompile Include="Source\ModuleUI.cpp" />
+    <ClCompile Include="Source\ModuleWindow.cpp" />
+    <ClCompile Include="Source\Primitive.cpp" />
+    <ClCompile Include="Source\Timer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Source\External\SDL\include\SDL_config.h.cmake">
@@ -343,5 +372,6 @@
     <None Include="Source\External\SDL\include\SDL_config_macosx.h.orig">
       <Filter>External\SDL</Filter>
     </None>
+    <None Include="Source\README.md" />
   </ItemGroup>
 </Project>

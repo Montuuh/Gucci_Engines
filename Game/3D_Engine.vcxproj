@@ -195,13 +195,13 @@
       <SDLCheck>true</SDLCheck>
       <ExceptionHandling>Sync</ExceptionHandling>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <AdditionalIncludeDirectories>D:\github desktop\Gucci_Engines\Game\Source\External\SDL\libx86;D:\github desktop\Gucci_Engines\Game\Source\External\glew\include\GL;$(ProjectDir)Source\External;D:\github desktop\Gucci_Engines\Game\Source\External\imgui\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Game\Source\External\SDL\libx86;$(SolutionDir)Game\Source\External\glew\include\GL;$(SolutionDir)Game\Source\External;$(SolutionDir)Game\Source\External\imgui\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
-      <AdditionalLibraryDirectories>D:\github desktop\Gucci_Engines\Game\Source\External\SDL\libx86</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)Game\Source\External\SDL\libx86</AdditionalLibraryDirectories>
       <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2test.lib;Shell32.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
