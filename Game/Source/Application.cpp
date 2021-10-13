@@ -5,7 +5,7 @@ Application::Application()
 {
 	window = new ModuleWindow(this);
 	input = new ModuleInput(this);
-	UI = new ModuleUI(this);
+	gui = new GuiManager(this);
 	renderer3D = new ModuleRenderer3D(this);
 	camera = new ModuleCamera3D(this);
 	
@@ -18,7 +18,7 @@ Application::Application()
 	AddModule(window);
 	AddModule(camera);
 	AddModule(input);
-	AddModule(UI);
+	AddModule(gui);
 	
 	// Scenes
 

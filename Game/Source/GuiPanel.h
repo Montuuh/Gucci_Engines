@@ -9,8 +9,6 @@ class GuiPanel
 {
 public:
 	Application* App;
-	std::string name;
-	bool active;
 
 	GuiPanel(Application* parent, bool start_enabled = false) : App(parent), active(start_enabled) {}
 
@@ -23,8 +21,9 @@ public:
 	virtual bool CleanUp() { return true; }
 
 
-private:
-
+public:
+	std::string name; // name of the current gui window
+	bool active; // Bool that activates or not the gui window
 };
 
 

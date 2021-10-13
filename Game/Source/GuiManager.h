@@ -1,17 +1,17 @@
-#ifndef __ModuleUI_H__
-#define __ModuleUI_H__
+#ifndef __ModuleGUI_H__
+#define __ModuleGUI_H__
 
 #include "Module.h"
 #include "GuiPanel.h"
 
 class Application;
 
-class ModuleUI : public Module
+class GuiManager : public Module
 {
 public:
 
-	ModuleUI(Application* app, bool start_enabled = true);
-	~ModuleUI();
+	GuiManager(Application* app, bool start_enabled = true);
+	~GuiManager();
 
 	bool Init();
 	bool Start();
@@ -24,7 +24,9 @@ public:
 
 public:
 	bool demoWindow;
-	std::vector<GuiPanel*> list_gui;
+	std::vector<GuiPanel*> list_panels;
+
+	bool boool = false;
 	
 };
 
