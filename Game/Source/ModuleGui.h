@@ -6,12 +6,12 @@
 
 class Application;
 
-class GuiManager : public Module
+class ModuleGui : public Module
 {
 public:
 
-	GuiManager(Application* app, bool start_enabled = true);
-	~GuiManager();
+	ModuleGui(Application* app, bool start_enabled = true);
+	~ModuleGui();
 
 	bool Init();
 	bool Start();

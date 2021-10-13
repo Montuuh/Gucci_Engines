@@ -1,6 +1,6 @@
 #include "Globals.h"
 #include "Application.h"
-#include "GuiManager.h"
+#include "ModuleGui.h"
 
 #include "imgui\include\imgui.h"
 #include "imgui\include\imgui_impl_opengl2.h"
@@ -8,17 +8,17 @@
 
 #include "MathGeoLib/include/MathGeoLib.h"
 
-GuiManager::GuiManager(Application* app, bool start_enabled) : Module(app, start_enabled)
+ModuleGui::ModuleGui(Application* app, bool start_enabled) : Module(app, start_enabled)
 {
 }
 
 // Destructor
-GuiManager::~GuiManager()
+ModuleGui::~ModuleGui()
 {
 }
 
 // Called before render is available
-bool GuiManager::Init()
+bool ModuleGui::Init()
 {
     bool ret = true;
 
@@ -41,7 +41,7 @@ bool GuiManager::Init()
 	return ret;
 }
 
-bool GuiManager::Start()
+bool ModuleGui::Start()
 {
     bool ret = true;
 
@@ -50,7 +50,7 @@ bool GuiManager::Start()
     return ret;
 }
 
-update_status GuiManager::PreUpdate(float dt)
+update_status ModuleGui::PreUpdate(float dt)
 {
     // Create ImGui new frames
     ImGui_ImplOpenGL2_NewFrame();
@@ -60,18 +60,18 @@ update_status GuiManager::PreUpdate(float dt)
 	return update_status::UPDATE_CONTINUE;
 }
 
-update_status GuiManager::Update(float dt)
+update_status ModuleGui::Update(float dt)
 {
     update_status ret = update_status::UPDATE_CONTINUE;
 
     // Show help imgui window
     if (demoWindow) ImGui::ShowDemoWindow();
 
-    /////////////////////////////////////
-    // TESTING
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // TESTING THINGS
 
-    ImGui::Begin("Configuration");
-    if (ImGui::BeginMenu("Options"))
+    ImGui::Begin("Configuration"); // Configuration window
+    if (ImGui::BeginMenu("Options")) // 1st Config Menu: Options
     {
         if (ImGui::MenuItem("Set Defaults"))
         {
@@ -89,11 +89,11 @@ update_status GuiManager::Update(float dt)
         ImGui::EndMenu();
     }
 
-    if (ImGui::CollapsingHeader("Application"))
+    if (ImGui::CollapsingHeader("Application")) // 2nd Config Menu (With title): Application
     {
     }
 
-    if (ImGui::CollapsingHeader("Window"))
+    if (ImGui::CollapsingHeader("Window")) // 3rd Config Menu (With title): Window
     {
         if (ImGui::Checkbox("Active", &boool))
         {
@@ -119,7 +119,7 @@ update_status GuiManager::Update(float dt)
         }
     }
 
-    if (ImGui::CollapsingHeader("File System"))
+    if (ImGui::CollapsingHeader("File System")) // 3rd Config Menu (With title): File system
     {
         if (ImGui::Checkbox("Active", &boool))
         {
@@ -143,7 +143,7 @@ update_status GuiManager::Update(float dt)
         }
     }
     ImGui::End(); // End configuration
-    ////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     ///////////////////////////
     // TODO: 
@@ -161,7 +161,7 @@ update_status GuiManager::Update(float dt)
 	return ret;
 }
 
-update_status GuiManager::PostUpdate(float dt)
+update_status ModuleGui::PostUpdate(float dt)
 {
     ImGui::EndFrame();
 
@@ -171,7 +171,7 @@ update_status GuiManager::PostUpdate(float dt)
 	return UPDATE_CONTINUE;
 }
 
-bool GuiManager::CleanUp()
+bool ModuleGui::CleanUp()
 {
     LOG("Destroying Module UI");
 
@@ -183,7 +183,7 @@ bool GuiManager::CleanUp()
     return true;
 }
 
-update_status GuiManager::MainMenu()
+update_status ModuleGui::MainMenu()
 {
     update_status ret = update_status::UPDATE_CONTINUE;
 
