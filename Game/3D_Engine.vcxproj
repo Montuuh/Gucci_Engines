@@ -53,6 +53,7 @@
     <ClCompile Include="Source\External\MathGeoLib\include\Math\TransformOps.cpp" />
     <ClCompile Include="Source\External\MathGeoLib\include\Time\Clock.cpp" />
     <ClCompile Include="Source\glmath.cpp" />
+    <ClCompile Include="Source\GuiPanelConfig.cpp" />
     <ClCompile Include="Source\Light.cpp" />
     <ClCompile Include="Source\log.cpp" />
     <ClCompile Include="Source\Main.cpp" />
@@ -228,6 +229,7 @@
     <ClInclude Include="Source\glmath.h" />
     <ClInclude Include="Source\Globals.h" />
     <ClInclude Include="Source\GuiPanel.h" />
+    <ClInclude Include="Source\GuiPanelConfig.h" />
     <ClInclude Include="Source\Light.h" />
     <ClInclude Include="Source\Module.h" />
     <ClInclude Include="Source\ModuleCamera3D.h" />

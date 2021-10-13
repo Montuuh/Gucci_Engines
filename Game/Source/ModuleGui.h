@@ -3,6 +3,7 @@
 
 #include "Module.h"
 #include "GuiPanel.h"
+#include "GuiPanelConfig.h"
 
 class Application;
 
@@ -22,11 +23,13 @@ public:
 
 	update_status MainMenu();
 
+	void AddGuiPanel(GuiPanel* guiPanel);
+
 public:
 	bool demoWindow;
 	std::vector<GuiPanel*> list_panels;
 
-	bool boool = false;
+	GuiPanelConfig* guiPanelConfig;
 	
 };
 

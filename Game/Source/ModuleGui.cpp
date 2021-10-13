@@ -2,6 +2,9 @@
 #include "Application.h"
 #include "ModuleGui.h"
 
+#include "GuiPanel.h"
+#include "GuiPanelConfig.h"
+
 #include "imgui\include\imgui.h"
 #include "imgui\include\imgui_impl_opengl2.h"
 #include "imgui\include\imgui_impl_sdl.h"
@@ -15,6 +18,10 @@ ModuleGui::ModuleGui(Application* app, bool start_enabled) : Module(app, start_e
 // Destructor
 ModuleGui::~ModuleGui()
 {
+    for (int i = 0; i <= list_panels.size() - 1; i++)
+    {
+        delete list_panels[i];
+    }
 }
 
 // Called before render is available
@@ -47,6 +54,9 @@ bool ModuleGui::Start()
 
     demoWindow = false;
 
+    guiPanelConfig = new GuiPanelConfig(App, false);
+    AddGuiPanel(guiPanelConfig);
+
     return ret;
 }
 
@@ -67,93 +77,21 @@ update_status ModuleGui::Update(float dt)
     // Show help imgui window
     if (demoWindow) ImGui::ShowDemoWindow();
 
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    // TESTING THINGS
-
-    ImGui::Begin("Configuration"); // Configuration window
-    if (ImGui::BeginMenu("Options")) // 1st Config Menu: Options
+    // Call every update of every gui panel
+    std::vector<GuiPanel*>::iterator it = list_panels.begin();
+    while (it != list_panels.end())
     {
-        if (ImGui::MenuItem("Set Defaults"))
+        if ((*it)->active)
         {
-
+            ret = (*it)->PreUpdate();
+            if (ret != update_status::UPDATE_CONTINUE) return update_status::UPDATE_ERROR;
+            ret = (*it)->Update();
+            if (ret != update_status::UPDATE_CONTINUE) return update_status::UPDATE_ERROR;
+            ret = (*it)->PostUpdate();
+            if (ret != update_status::UPDATE_CONTINUE) return update_status::UPDATE_ERROR;
         }
-        if (ImGui::MenuItem("Save"))
-        {
-
-        }
-        if (ImGui::MenuItem("Load"))
-        {
-
-        }
-
-        ImGui::EndMenu();
+        it++;
     }
-
-    if (ImGui::CollapsingHeader("Application")) // 2nd Config Menu (With title): Application
-    {
-    }
-
-    if (ImGui::CollapsingHeader("Window")) // 3rd Config Menu (With title): Window
-    {
-        if (ImGui::Checkbox("Active", &boool))
-        {
-            boool = !boool;
-        }
-        if (ImGui::Checkbox("Fullscreen", &boool))
-        {
-            boool = !boool;
-        }
-        ImGui::SameLine();
-        if (ImGui::Checkbox("Resizable", &boool))
-        {
-            boool = !boool;
-        }
-        if (ImGui::Checkbox("Borderless", &boool))
-        {
-            boool = !boool;
-        }
-        ImGui::SameLine();
-        if (ImGui::Checkbox("Full Desktop", &boool))
-        {
-            boool = !boool;
-        }
-    }
-
-    if (ImGui::CollapsingHeader("File System")) // 3rd Config Menu (With title): File system
-    {
-        if (ImGui::Checkbox("Active", &boool))
-        {
-            boool = !boool;
-        }
-    }
-
-    if (ImGui::CollapsingHeader("Input"))
-    {
-        if (ImGui::Checkbox("Active", &boool))
-        {
-            boool = !boool;
-        }
-    }
-
-    if (ImGui::CollapsingHeader("Hardware"))
-    {
-        if (ImGui::Checkbox("Active", &boool))
-        {
-            boool = !boool;
-        }
-    }
-    ImGui::End(); // End configuration
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-    ///////////////////////////
-    // TODO: 
-    // Vale voy a escribir mi idea para mi yo del futuro o para ti chito. Hay que hacer algo tipo llamar a cada preupdate, update y post update de cada gui window. Cómo?
-    // Algo parecido a como se llaman a todos los modulos pero con una lista de gui panels en vez de modulos. Añadir un if(list_panels.active == true) then call updates
-    // Lo tengo que hacer y testear aún, lo de arriba funciona. Hay que hacer gui windows de:
-    // Configuration, Console, About...
-    // Lo de arriba que esta entre rallitas es como si fuera GuiConfiguration.h (TODO)
-    // Ni Console ni about hecho
-    /////////////////////////
 
     // Main Menu Bar
     ret = MainMenu();
@@ -202,7 +140,10 @@ update_status ModuleGui::MainMenu()
         if (ImGui::BeginMenu("View"))
         {
             if (ImGui::MenuItem("Console")); // Toggle console panel active bool
-            if (ImGui::MenuItem("Configuration")); // Toggle configuration panel active bool
+            if (ImGui::MenuItem("Configuration")) // Toggle configuration panel active bool
+            {
+                guiPanelConfig->active = !guiPanelConfig->active;
+            }
             
             ImGui::EndMenu();
         }
@@ -222,4 +163,9 @@ update_status ModuleGui::MainMenu()
     ImGui::EndMainMenuBar();
 
     return ret;
+}
+
+void ModuleGui::AddGuiPanel(GuiPanel* guiPanel)
+{
+    list_panels.push_back(guiPanel);
 }

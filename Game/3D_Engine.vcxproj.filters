@@ -507,6 +507,7 @@
     <ClInclude Include="Source\External\MathGeoLib\include\Time\Clock.h">
       <Filter>External\MathGeo\Time</Filter>
     </ClInclude>
+    <ClInclude Include="Source\GuiPanelConfig.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\External\imgui\include\imgui.cpp">
@@ -637,6 +638,7 @@
     <ClCompile Include="Source\External\MathGeoLib\include\Time\Clock.cpp">
       <Filter>External\MathGeo\Time</Filter>
     </ClCompile>
+    <ClCompile Include="Source\GuiPanelConfig.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Source\External\SDL\include\SDL_config.h.cmake">
