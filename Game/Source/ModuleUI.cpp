@@ -113,7 +113,7 @@ update_status ModuleUI::MainMenu()
         }
         if (ImGui::BeginMenu("Configuration"))
         {
-
+            //if (ImGui::MenuItem("PRUEBA"));
             ImGui::EndMenu();
         }
         if (ImGui::BeginMenu("Quit"))
