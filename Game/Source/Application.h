@@ -35,11 +35,15 @@ public:
 	update_status Update();
 	bool CleanUp();
 
+	void RequestBrowser(LPCSTR lpFile);
+
 private:
 
 	void AddModule(Module* mod);
 	void PrepareUpdate();
 	void FinishUpdate();
+
+	
 };
 
 #endif

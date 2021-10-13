@@ -62,18 +62,15 @@ update_status ModuleUI::PreUpdate(float dt)
 
 update_status ModuleUI::Update(float dt)
 {
-    update_status status = update_status::UPDATE_CONTINUE;
+    update_status ret = update_status::UPDATE_CONTINUE;
 
     // Show help imgui window
     if (demoWindow) ImGui::ShowDemoWindow();
 
     // Main Menu Bar
-    ImGui::BeginMainMenuBar();
-    if (ImGui::MenuItem("Quit")) return UPDATE_STOP;
-    ImGui::MenuItem("Holi");
-    ImGui::EndMainMenuBar();
+    ret = MainMenu();
 
-	return status;
+	return ret;
 }
 
 update_status ModuleUI::PostUpdate(float dt)
@@ -96,4 +93,36 @@ bool ModuleUI::CleanUp()
     ImGui::DestroyContext();
 
     return true;
+}
+
+update_status ModuleUI::MainMenu()
+{
+    update_status ret = update_status::UPDATE_CONTINUE;
+
+    ImGui::BeginMainMenuBar();
+    {
+        if (ImGui::BeginMenu("Help"))
+        {
+            if (ImGui::MenuItem("Gui Demo")) demoWindow = !demoWindow;
+            if (ImGui::MenuItem("Documentation")) App->RequestBrowser("https://github.com/Montuuh/Gucci_Engines");
+            if (ImGui::MenuItem("Download Latest")) App->RequestBrowser("https://github.com/Montuuh/Gucci_Engines/releases");
+            if (ImGui::MenuItem("Report a bug")) App->RequestBrowser("https://github.com/Montuuh/Gucci_Engines/issues");
+            if (ImGui::MenuItem("About"));
+
+            ImGui::EndMenu();
+        }
+        if (ImGui::BeginMenu("Configuration"))
+        {
+
+            ImGui::EndMenu();
+        }
+        if (ImGui::BeginMenu("Quit"))
+        {
+            ImGui::EndMenu();
+            return UPDATE_STOP;
+        }
+    }
+    ImGui::EndMainMenuBar();
+
+    return ret;
 }

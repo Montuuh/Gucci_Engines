@@ -1,4 +1,5 @@
 #include "Application.h"
+#include "Globals.h"
 
 Application::Application()
 {
@@ -27,9 +28,6 @@ Application::Application()
 
 Application::~Application()
 {
-	//for (int i = list_modules.size() - 1; i >= 0; i--) {
-	//	delete list_modules[i];
-	//}
 	for (int i = 0; i <= list_modules.size() - 1; i++) 
 	{
 		delete list_modules[i];
@@ -125,4 +123,9 @@ bool Application::CleanUp()
 void Application::AddModule(Module* mod)
 {
 	list_modules.push_back(mod);
+}
+
+void Application::RequestBrowser(LPCSTR lpFile)
+{
+	ShellExecuteA(NULL, "open", lpFile, NULL, NULL, SW_SHOWNORMAL);
 }

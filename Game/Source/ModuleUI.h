@@ -20,7 +20,7 @@ public:
 	update_status PostUpdate(float dt);
 	bool CleanUp();
 
-	void AddGuiPanel(GuiPanel* guiPanel);
+	update_status MainMenu();
 
 public:
 	bool demoWindow;
