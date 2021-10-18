@@ -74,6 +74,10 @@ update_status ModuleGui::Update(float dt)
 {
     update_status ret = update_status::UPDATE_CONTINUE;
 
+    // Manage Input Hotkeys
+    ret = InputManagement();
+    if (ret == update_status::UPDATE_STOP) return update_status::UPDATE_STOP;
+
     // Show help imgui window
     if (demoWindow) ImGui::ShowDemoWindow();
 
@@ -95,6 +99,7 @@ update_status ModuleGui::Update(float dt)
 
     // Main Menu Bar
     ret = MainMenu();
+    if (ret == update_status::UPDATE_STOP) return update_status::UPDATE_STOP;
 
 	return ret;
 }
@@ -129,7 +134,7 @@ update_status ModuleGui::MainMenu()
     {
         if (ImGui::BeginMenu("File"))
         {
-            if (ImGui::MenuItem("Quit")) // TODO: No sé como poner el ESC que sale en el engine.exe del handout02
+            if (ImGui::MenuItem("Quit", "ESC")) // TODO: No sé como poner el ESC que sale en el engine.exe del handout02
             {
                 ImGui::EndMenu();
                 return UPDATE_STOP;
@@ -139,8 +144,8 @@ update_status ModuleGui::MainMenu()
 
         if (ImGui::BeginMenu("View"))
         {
-            if (ImGui::MenuItem("Console")); // Toggle console panel active bool
-            if (ImGui::MenuItem("Configuration")) // Toggle configuration panel active bool
+            if (ImGui::MenuItem("Console", "1")); // Toggle console panel active bool
+            if (ImGui::MenuItem("Configuration", "4")) // Toggle configuration panel active bool
             {
                 guiPanelConfig->active = !guiPanelConfig->active;
             }
@@ -161,6 +166,19 @@ update_status ModuleGui::MainMenu()
 
     }
     ImGui::EndMainMenuBar();
+
+    return ret;
+}
+
+update_status ModuleGui::InputManagement()
+{
+    update_status ret = update_status::UPDATE_CONTINUE;
+    if (App->input->keyboard[SDL_SCANCODE_ESCAPE] == KEY_UP)
+        return update_status::UPDATE_STOP;
+    if (App->input->keyboard[SDL_SCANCODE_1] == KEY_UP)
+        // guiPanelConsole->active = !guiPanelConsole->active;
+    if (App->input->keyboard[SDL_SCANCODE_4] == KEY_UP)
+        guiPanelConfig->active = !guiPanelConfig->active;
 
     return ret;
 }

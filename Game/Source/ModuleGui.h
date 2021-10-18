@@ -23,6 +23,8 @@ public:
 
 	update_status MainMenu();
 
+	update_status InputManagement();
+
 	void AddGuiPanel(GuiPanel* guiPanel);
 
 public:

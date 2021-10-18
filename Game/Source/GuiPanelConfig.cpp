@@ -46,6 +46,8 @@ update_status GuiPanelConfig::Update()
 
     if (ImGui::CollapsingHeader("Application")) // 2nd Config Menu (With title): Application
     {
+        /*std::string str = "Hola";*/
+        //ImGui::InputText(str.c_str(), , str.size());
     }
 
     if (ImGui::CollapsingHeader("Window")) // 3rd Config Menu (With title): Window
@@ -54,22 +56,42 @@ update_status GuiPanelConfig::Update()
         {
             boool = !boool;
         }
-        if (ImGui::Checkbox("Fullscreen", &boool))
+        if (ImGui::Checkbox("Fullscreen", &boool /* should be like App->window->fullscreen */))
         {
+            // bool fullscreen = App->GetFullScreen;
+            // fullscreen = !fullscreen;
+            // App->window->fullscreen = fullscreen;
+            // App->SetFullScreen(fullscreen);
+            
             boool = !boool;
         }
         ImGui::SameLine();
-        if (ImGui::Checkbox("Resizable", &boool))
+        if (ImGui::Checkbox("Resizable", &boool /* should be like App->window->resizable */))
         {
+            // resizable = App->GetResizableScreen;
+            // resizable = !resizable;
+            // App->window->resizable = resizable;
+            // App->SetResizableScreen(resizable);
+
             boool = !boool;
         }
-        if (ImGui::Checkbox("Borderless", &boool))
+        if (ImGui::Checkbox("Borderless", &boool /* should be like App->window->borderless */))
         {
+            // borderless = App->GetBorderlessScreen;
+            // borderless = !borderless;
+            // App->window->borderless = borderless;
+            // App->SetBorderlessScreen(borderless);
+
             boool = !boool;
         }
         ImGui::SameLine();
-        if (ImGui::Checkbox("Full Desktop", &boool))
+        if (ImGui::Checkbox("Full Desktop", &boool /* should be like App->window->fullDesktop */))
         {
+            // fullDesktop = App->GetFullDesktopScreen;
+            // fullDesktop = !fullDesktop;
+            // App->window->fullDesktop = fullDesktop;
+            // App->SetFullDesktopScreen(fullDesktop);
+
             boool = !boool;
         }
     }

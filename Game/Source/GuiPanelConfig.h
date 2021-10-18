@@ -18,7 +18,10 @@ private:
 public:
 
 private:
-
+	bool fullscreen;
+	bool resizable;
+	bool borderless;
+	bool fullDesktop;
 };
 
 #endif
