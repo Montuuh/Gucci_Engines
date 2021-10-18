@@ -57,6 +57,9 @@ bool ModuleGui::Start()
     guiPanelConfig = new GuiPanelConfig(App, false);
     AddGuiPanel(guiPanelConfig);
 
+    // Setting ImGui style (colors, etc)
+    /*style = &ImGui::GetStyle();*/
+    /*style->Colors[ImGuiCol_Text] = */
     return ret;
 }
 
@@ -173,12 +176,16 @@ update_status ModuleGui::MainMenu()
 update_status ModuleGui::InputManagement()
 {
     update_status ret = update_status::UPDATE_CONTINUE;
+
+    ////// Console and cofiguration window hotkeys
+    // if (App->input->keyboard[SDL_SCANCODE_1] == KEY_DOWN)
+        // guiPanelConsole->active = !guiPanelConsole->active;
+    if (App->input->keyboard[SDL_SCANCODE_4] == KEY_DOWN)
+        guiPanelConfig->active = !guiPanelConfig->active;
+
+    ////// Quit hotkey
     if (App->input->keyboard[SDL_SCANCODE_ESCAPE] == KEY_UP)
         return update_status::UPDATE_STOP;
-    if (App->input->keyboard[SDL_SCANCODE_1] == KEY_UP)
-        // guiPanelConsole->active = !guiPanelConsole->active;
-    if (App->input->keyboard[SDL_SCANCODE_4] == KEY_UP)
-        guiPanelConfig->active = !guiPanelConfig->active;
 
     return ret;
 }

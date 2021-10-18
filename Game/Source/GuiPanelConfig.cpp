@@ -23,10 +23,9 @@ update_status GuiPanelConfig::PreUpdate()
 
 update_status GuiPanelConfig::Update()
 {
-    bool boool = true;
-
     ImGui::Begin("Configuration"); // Configuration window
-    if (ImGui::BeginMenu("Options")) // 1st Config Menu: Options
+    // 1st Config Menu: Options
+    if (ImGui::BeginMenu("Options")) 
     {
         if (ImGui::MenuItem("Set Defaults"))
         {
@@ -44,82 +43,155 @@ update_status GuiPanelConfig::Update()
         ImGui::EndMenu();
     }
 
-    if (ImGui::CollapsingHeader("Application")) // 2nd Config Menu (With title): Application
+    // 2nd Config Menu (With title): Application
+    if (ImGui::CollapsingHeader("Application")) 
     {
-        /*std::string str = "Hola";*/
-        //ImGui::InputText(str.c_str(), , str.size());
-    }
+        /////// App Name input text
+        char appName[200];
+        strcpy_s(appName, 200, TITLE);
+        if (ImGui::InputText("App Name", appName, IM_ARRAYSIZE(appName)))
+        {
+            // App->SetAppName(appName);
+        }
 
-    if (ImGui::CollapsingHeader("Window")) // 3rd Config Menu (With title): Window
-    {
-        if (ImGui::Checkbox("Active", &boool))
+        /////// Organization Name input text
+        char orgName[200];
+        strcpy_s(orgName, 200, ORGANIZATION);
+        if (ImGui::InputText("Organization", orgName, IM_ARRAYSIZE(orgName)))
         {
-            boool = !boool;
+            // App->SetOrgName(orgName);
         }
-        if (ImGui::Checkbox("Fullscreen", &boool /* should be like App->window->fullscreen */))
+
+        /////// Max Fps Slider
+        // maxFps = App->GetMaxFps();
+        if (ImGui::SliderInt("Max FPS", &maxFps, 1, 120))
         {
-            // bool fullscreen = App->GetFullScreen;
-            // fullscreen = !fullscreen;
-            // App->window->fullscreen = fullscreen;
-            // App->SetFullScreen(fullscreen);
-            
-            boool = !boool;
+            // App->SetMaxFps(maxFps);
         }
+
+        /////// Limit framerate counter
+        ImGui::Text("Limit Framerate:");
         ImGui::SameLine();
-        if (ImGui::Checkbox("Resizable", &boool /* should be like App->window->resizable */))
-        {
-            // resizable = App->GetResizableScreen;
-            // resizable = !resizable;
-            // App->window->resizable = resizable;
-            // App->SetResizableScreen(resizable);
+        std::string temp = std::to_string(maxFps /* should be like App->GetMaxFps */); // int to const char* converter
+        const char* temp2 = temp.c_str();
+        ImGui::PushStyleColor(ImGuiCol_Text, IM_COL32(255, 255, 0, 255));
+        ImGui::Text(temp2);
+        ImGui::PopStyleColor();
 
-            boool = !boool;
-        }
-        if (ImGui::Checkbox("Borderless", &boool /* should be like App->window->borderless */))
-        {
-            // borderless = App->GetBorderlessScreen;
-            // borderless = !borderless;
-            // App->window->borderless = borderless;
-            // App->SetBorderlessScreen(borderless);
-
-            boool = !boool;
-        }
-        ImGui::SameLine();
-        if (ImGui::Checkbox("Full Desktop", &boool /* should be like App->window->fullDesktop */))
-        {
-            // fullDesktop = App->GetFullDesktopScreen;
-            // fullDesktop = !fullDesktop;
-            // App->window->fullDesktop = fullDesktop;
-            // App->SetFullDesktopScreen(fullDesktop);
-
-            boool = !boool;
-        }
+        /////// FPS Graph
+        // We need a FPS Getter to start implementing this
+        
+        /////// Milliseconds Graph
+        // We need a Milliseconds Getter to start implementing this
     }
 
-    if (ImGui::CollapsingHeader("File System")) // 3rd Config Menu (With title): File system
+    // 3rd Config Menu (With title): Window
+    if (ImGui::CollapsingHeader("Window")) 
     {
-        if (ImGui::Checkbox("Active", &boool))
+        /////// Active window checkbox
+        if (ImGui::Checkbox("Active", &windowActive))
         {
-            boool = !boool;
+
+        }
+
+        /////// App Icon input
+        
+
+        /////// Brigthness slider
+        // brightness = App->window->GetBrightness();
+        if (ImGui::SliderFloat("Brightness", &brightness, 0.000f, 1.000f))
+        {
+            // App->window->SetBrightness(brightness);
+        }
+
+        /////// Width slider
+        // width = App->window->GetWidth();
+        // int maxWidth = App->window->GetMaxWidth();
+        if (ImGui::SliderInt("Width", &width, 640, /* maxWidth */1537))
+        {
+            // App->window->SetWidth(width);
+        }
+
+        /////// Height slider
+        // height = App->window->GetHeight();
+        // int maxHeight = App->window->GetMaxHeight();
+        if (ImGui::SliderInt("Height", &height, 480, /* maxHeight */864))
+        {
+            // App->window->SetHeight(height);
+        }
+
+        /////// Refresh rate
+        ImGui::Text("Refresh Rate:");
+        ImGui::SameLine();
+        std::string temp = std::to_string(refreshRate /* should be like App->window->GetRefreshRate */); // int to const char* converter
+        const char* temp2 = temp.c_str();
+        ImGui::PushStyleColor(ImGuiCol_Text, IM_COL32(255, 255, 0, 255));
+        ImGui::Text(temp2);
+        ImGui::PopStyleColor();
+
+        /////// Fullscreen checkbox
+        //fullscreen = App->window->IsFullscreen();
+        if (ImGui::Checkbox("Fullscreen", &boolTest /* &fullscreen */))
+        {
+            // App->window->SetFullScreen(fullscreen);
+        }
+
+        ImGui::SameLine();
+
+        /////// Resizable checkbox
+        // resizable = App->window->IsResizable();
+        if (ImGui::Checkbox("Resizable", &boolTest /* &resizable */))
+        {
+            // App->window->SetResizableScreen(resizable);
+        }
+
+        /////// Borderless checkbox
+        // borderless = App->window->IsBorderless();
+        if (ImGui::Checkbox("Borderless", &boolTest /* &borderless */))
+        {
+            // App->window->SetBorderlessScreen(borderless);
+        }
+
+        ImGui::SameLine();
+
+        /////// Fullscreen Desktop checkbox
+        // fullDesktop = App->window->IsFullDesktop();
+        if (ImGui::Checkbox("Full Desktop", &boolTest /* &fullDesktop */))
+        {
+            // App->window->SetFullDesktopScreen(fullDesktop);
         }
     }
 
+    // 3rd Config Menu (With title): File system
+    if (ImGui::CollapsingHeader("File System")) 
+    {
+        /////// Active file system checkbox
+        if (ImGui::Checkbox("Active", &fileSystemActive))
+        {
+
+        }
+    }
+
+    // 4th Config Menu (With title): Input
     if (ImGui::CollapsingHeader("Input"))
     {
-        if (ImGui::Checkbox("Active", &boool))
+        /////// Active input checkbox
+        if (ImGui::Checkbox("Active", &inputActive))
         {
-            boool = !boool;
+
         }
     }
 
+    // 5th Config Menu (With title): Hardware
     if (ImGui::CollapsingHeader("Hardware"))
     {
-        if (ImGui::Checkbox("Active", &boool))
+        /////// Active hardware checkbox
+        if (ImGui::Checkbox("Active", &hardwareActive))
         {
-            boool = !boool;
+
         }
     }
-    ImGui::End(); // End configuration
+    ImGui::End(); // End configuration window
 
     return update_status::UPDATE_CONTINUE;
 }

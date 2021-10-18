@@ -33,6 +33,7 @@ public:
 
 	GuiPanelConfig* guiPanelConfig;
 	
+	/*ImGuiStyle* style;*/
 };
 
 #endif // __Module_H__
