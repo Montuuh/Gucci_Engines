@@ -1,6 +1,7 @@
 #include "Globals.h"
 #include "Application.h"
 #include "ModuleWindow.h"
+#include "glew/include/GL/glew.h"
 
 
 
@@ -23,7 +24,15 @@ bool ModuleWindow::Init()
 	LOG("Init SDL window & surface");
 	bool ret = true;
 
-	
+	//GLenum err = glewInit();
+	//// … check for errors
+	//LOG("Using Glew %s", glewGetString(GLEW_VERSION));
+	//// Should be 2.0
+
+	//LOG("Vendor: %s", glGetString(GL_VENDOR));
+	//LOG("Renderer: %s", glGetString(GL_RENDERER));
+	//LOG("OpenGL version supported %s", glGetString(GL_VERSION));
+	//LOG("GLSL: %s\n", glGetString(GL_SHADING_LANGUAGE_VERSION));
 
 
 	if(SDL_Init(SDL_INIT_VIDEO) < 0)
@@ -45,6 +54,9 @@ bool ModuleWindow::Init()
 		SDL_GL_SetAttribute(SDL_GL_STENCIL_SIZE, 8);
 		SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
 		SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 1);
+
+		glMatrixMode(GL_PROJECTION);
+		glLoadIdentity();
 
 		if(WIN_FULLSCREEN == true)
 		{
