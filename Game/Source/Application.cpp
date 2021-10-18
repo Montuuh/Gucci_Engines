@@ -63,6 +63,9 @@ bool Application::Init()
 	appName = "Gucci Engines";
 	orgName = "UPC Citm";
 
+	// Set initial max FPS
+	maxFps = 60;
+
 	return ret;
 }
 
@@ -163,11 +166,17 @@ void Application::SetOrgName(std::string _orgName)
 }
 
 // Max FPS getter and setter
-int Application::GetMaxFps()
+const int Application::GetMaxFps()
 {
-	return 1;
+	return maxFps;
 }
 void Application::SetMaxFps(int _maxFps)
 {
+	maxFps = _maxFps;
+}
 
+// Current FPS getter
+const int Application::GetFps()
+{
+	return 60;
 }

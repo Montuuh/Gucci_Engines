@@ -47,17 +47,16 @@ update_status GuiPanelConfig::Update()
     if (ImGui::CollapsingHeader("Application")) 
     {
         /////// App Name input text
-        char appName[50] = "";
-        //strcpy_s(appName, 200, TITLE/* App->GetAppName()*/);
+        static char appName[50] = "";
         strcpy_s(appName, 50, App->GetAppName());
         if (ImGui::InputText("App Name", appName, IM_ARRAYSIZE(appName)))
         {
             App->SetAppName(appName);
         }
 
+
         /////// Organization Name input text
         char orgName[200];
-        //strcpy_s(orgName, 200, ORGANIZATION /* App->GetOrgName()*/);
         strcpy_s(orgName, 200, App->GetOrgName());
         if (ImGui::InputText("Organization", orgName, IM_ARRAYSIZE(orgName)))
         {
@@ -65,16 +64,16 @@ update_status GuiPanelConfig::Update()
         }
 
         /////// Max Fps Slider
-        // maxFps = App->GetMaxFps();
+        maxFps = App->GetMaxFps();
         if (ImGui::SliderInt("Max FPS", &maxFps, 1, 120))
         {
-            // App->SetMaxFps(maxFps);
+            App->SetMaxFps(maxFps);
         }
 
         /////// Limit framerate counter
         ImGui::Text("Limit Framerate:");
         ImGui::SameLine();
-        std::string temp = std::to_string(maxFps /* should be like App->GetMaxFps */); // int to const char* converter
+        std::string temp = std::to_string(App->GetMaxFps()); // int to const char* converter
         const char* temp2 = temp.c_str();
         ImGui::PushStyleColor(ImGuiCol_Text, IM_COL32(255, 255, 0, 255));
         ImGui::Text(temp2);

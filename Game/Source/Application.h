@@ -27,8 +27,10 @@ public:
 	void SetAppName(std::string _appName);
 	const char* GetOrgName();
 	void SetOrgName(std::string _orgName);
-	int GetMaxFps();
+	const int GetMaxFps();
 	void SetMaxFps(int _maxFps);
+	const int GetFps();
+	
 
 private:
 	void AddModule(Module* mod);
@@ -51,7 +53,7 @@ private:
 	std::string appName;
 	std::string orgName;
 
-
+	int maxFps;
 };
 
 #endif

@@ -5,6 +5,8 @@
 #include "GuiPanel.h"
 #include "GuiPanelConfig.h"
 
+#include "imgui\include\imgui.h"
+
 class Application;
 
 class ModuleGui : public Module
@@ -34,6 +36,9 @@ public:
 	GuiPanelConfig* guiPanelConfig;
 	
 	/*ImGuiStyle* style;*/
+	
+private:
+	ImGuiIO io;
 };
 
 #endif // __Module_H__

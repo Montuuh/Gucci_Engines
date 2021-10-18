@@ -33,10 +33,14 @@ bool ModuleGui::Init()
 
     // Application init: create a dear imgui context, setup some options, load fonts...
     IMGUI_CHECKVERSION();
-    ImGui::CreateContext();
+    ImGuiContext* ctx = ImGui::CreateContext();
+    ImGui::SetCurrentContext(ctx);
 
-    ImGuiIO& io = ImGui::GetIO(); (void)io;
+    io = ImGui::GetIO(); 
+    (void)io;
     io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;
+
+
 
     // ImGui Init & Backends Init
     ImGui_ImplOpenGL2_Init();
@@ -51,7 +55,7 @@ bool ModuleGui::Init()
 bool ModuleGui::Start()
 {
     bool ret = true;
-
+    
     demoWindow = false;
 
     guiPanelConfig = new GuiPanelConfig(App, false);
@@ -69,6 +73,11 @@ update_status ModuleGui::PreUpdate(float dt)
     ImGui_ImplOpenGL2_NewFrame();
     ImGui_ImplSDL2_NewFrame(App->window->window);
     ImGui::NewFrame();
+
+
+    io.WantCaptureKeyboard = true;
+    io.WantTextInput = true;
+    
 
 	return update_status::UPDATE_CONTINUE;
 }
