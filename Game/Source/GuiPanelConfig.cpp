@@ -47,19 +47,21 @@ update_status GuiPanelConfig::Update()
     if (ImGui::CollapsingHeader("Application")) 
     {
         /////// App Name input text
-        char appName[200];
-        strcpy_s(appName, 200, TITLE);
+        char appName[50] = "";
+        //strcpy_s(appName, 200, TITLE/* App->GetAppName()*/);
+        strcpy_s(appName, 50, App->GetAppName());
         if (ImGui::InputText("App Name", appName, IM_ARRAYSIZE(appName)))
         {
-            // App->SetAppName(appName);
+            App->SetAppName(appName);
         }
 
         /////// Organization Name input text
         char orgName[200];
-        strcpy_s(orgName, 200, ORGANIZATION);
+        //strcpy_s(orgName, 200, ORGANIZATION /* App->GetOrgName()*/);
+        strcpy_s(orgName, 200, App->GetOrgName());
         if (ImGui::InputText("Organization", orgName, IM_ARRAYSIZE(orgName)))
         {
-            // App->SetOrgName(orgName);
+            App->SetOrgName(orgName);
         }
 
         /////// Max Fps Slider

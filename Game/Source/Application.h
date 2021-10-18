@@ -14,20 +14,6 @@
 class Application
 {
 public:
-	ModuleWindow* window;
-	ModuleInput* input;
-	ModuleGui* gui;
-	ModuleRenderer3D* renderer3D;
-	ModuleCamera3D* camera;
-
-private:
-
-	Timer	ms_timer;
-	float	dt;
-	std::vector<Module*> list_modules;
-
-public:
-
 	Application();
 	~Application();
 
@@ -37,13 +23,35 @@ public:
 
 	void RequestBrowser(LPCSTR lpFile);
 
-private:
+	const char* GetAppName();
+	void SetAppName(std::string _appName);
+	const char* GetOrgName();
+	void SetOrgName(std::string _orgName);
+	int GetMaxFps();
+	void SetMaxFps(int _maxFps);
 
+private:
 	void AddModule(Module* mod);
 	void PrepareUpdate();
 	void FinishUpdate();
 
-	
+public:
+	ModuleWindow* window;
+	ModuleInput* input;
+	ModuleGui* gui;
+	ModuleRenderer3D* renderer3D;
+	ModuleCamera3D* camera;
+
+private:
+	Timer	ms_timer;
+	float	dt;
+
+	std::vector<Module*> list_modules;
+
+	std::string appName;
+	std::string orgName;
+
+
 };
 
 #endif

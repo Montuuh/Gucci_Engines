@@ -58,6 +58,11 @@ bool Application::Init()
 	}
 	
 	ms_timer.Start();
+
+	// Set initial app and organization names
+	appName = "Gucci Engines";
+	orgName = "UPC Citm";
+
 	return ret;
 }
 
@@ -128,4 +133,41 @@ void Application::AddModule(Module* mod)
 void Application::RequestBrowser(LPCSTR lpFile)
 {
 	ShellExecuteA(NULL, "open", lpFile, NULL, NULL, SW_SHOWNORMAL);
+}
+
+// Application Name getter and setter
+const char* Application::GetAppName()
+{
+	return appName.c_str();
+}
+void Application::SetAppName(std::string _appName)
+{
+	if (_appName.size() != 0)
+	{
+		appName = _appName;
+		window->SetTitle(appName.c_str());
+	}
+}
+
+// Organization Name getter and setter
+const char* Application::GetOrgName()
+{
+	return orgName.c_str();
+}
+void Application::SetOrgName(std::string _orgName)
+{
+	if (_orgName.size() != 0)
+	{
+		appName = _orgName;
+	}
+}
+
+// Max FPS getter and setter
+int Application::GetMaxFps()
+{
+	return 1;
+}
+void Application::SetMaxFps(int _maxFps)
+{
+
 }
