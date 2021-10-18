@@ -36,11 +36,10 @@ bool ModuleGui::Init()
     ImGuiContext* ctx = ImGui::CreateContext();
     ImGui::SetCurrentContext(ctx);
 
+    // ImGui IO init
     io = ImGui::GetIO(); 
     (void)io;
     io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;
-
-
 
     // ImGui Init & Backends Init
     ImGui_ImplOpenGL2_Init();
@@ -74,7 +73,7 @@ update_status ModuleGui::PreUpdate(float dt)
     ImGui_ImplSDL2_NewFrame(App->window->window);
     ImGui::NewFrame();
 
-
+    // Set some io flags
     io.WantCaptureKeyboard = true;
     io.WantTextInput = true;
     
@@ -88,7 +87,8 @@ update_status ModuleGui::Update(float dt)
 
     // Manage Input Hotkeys
     ret = InputManagement();
-    if (ret == update_status::UPDATE_STOP) return update_status::UPDATE_STOP;
+    if (ret == update_status::UPDATE_CONTINUE);
+    else return ret;
 
     // Show help imgui window
     if (demoWindow) ImGui::ShowDemoWindow();
@@ -100,18 +100,22 @@ update_status ModuleGui::Update(float dt)
         if ((*it)->active)
         {
             ret = (*it)->PreUpdate();
-            if (ret != update_status::UPDATE_CONTINUE) return update_status::UPDATE_ERROR;
+            if (ret == update_status::UPDATE_CONTINUE);
+            else return ret;
             ret = (*it)->Update();
-            if (ret != update_status::UPDATE_CONTINUE) return update_status::UPDATE_ERROR;
+            if (ret == update_status::UPDATE_CONTINUE);
+            else return ret;
             ret = (*it)->PostUpdate();
-            if (ret != update_status::UPDATE_CONTINUE) return update_status::UPDATE_ERROR;
+            if (ret == update_status::UPDATE_CONTINUE);
+            else return ret;
         }
         it++;
     }
 
     // Main Menu Bar
     ret = MainMenu();
-    if (ret == update_status::UPDATE_STOP) return update_status::UPDATE_STOP;
+    if (ret == update_status::UPDATE_CONTINUE);
+    else return ret;
 
 	return ret;
 }

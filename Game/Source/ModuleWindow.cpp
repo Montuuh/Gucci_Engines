@@ -9,8 +9,12 @@ ModuleWindow::ModuleWindow(Application* app, bool start_enabled) : Module(app, s
 {
 	window = NULL;
 	screen_surface = NULL;
-
-	
+	screenWidth = SCREEN_WIDTH;
+	screenHeight = SCREEN_HEIGHT;
+	fullscreen = false;
+	resizable = true;
+	borderless = false;
+	fullscreenDesktop = false;
 }
 
 // Destructor
@@ -42,10 +46,19 @@ bool ModuleWindow::Init()
 	}
 	else
 	{
-		//Create window
-		int width = SCREEN_WIDTH * SCREEN_SIZE;
-		int height = SCREEN_HEIGHT * SCREEN_SIZE;
+		// Setting window parameters
+		screenWidth = SCREEN_WIDTH * SCREEN_SIZE;
+		screenHeight = SCREEN_HEIGHT * SCREEN_SIZE;
+
 		Uint32 flags = SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN;
+		if (fullscreen == true)
+			flags |= SDL_WINDOW_FULLSCREEN;
+		if (resizable == true)
+			flags |= SDL_WINDOW_RESIZABLE;
+		if (borderless == true)
+			flags |= SDL_WINDOW_BORDERLESS;
+		if (fullscreenDesktop == true)
+			flags |= SDL_WINDOW_FULLSCREEN_DESKTOP;
 
 		//Use OpenGL 2.1
 		SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
@@ -58,28 +71,9 @@ bool ModuleWindow::Init()
 		glMatrixMode(GL_PROJECTION);
 		glLoadIdentity();
 
-		if(WIN_FULLSCREEN == true)
-		{
-			flags |= SDL_WINDOW_FULLSCREEN;
-		}
-
-		if(WIN_RESIZABLE == true)
-		{
-			flags |= SDL_WINDOW_RESIZABLE;
-		}
-
-		if(WIN_BORDERLESS == true)
-		{
-			flags |= SDL_WINDOW_BORDERLESS;
-		}
-
-		if(WIN_FULLSCREEN_DESKTOP == true)
-		{
-			flags |= SDL_WINDOW_FULLSCREEN_DESKTOP;
-		}
-
-		window = SDL_CreateWindow(TITLE, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height, flags);
-
+		
+		// Creating window
+		window = SDL_CreateWindow(App->GetAppName(), 0, 30, screenWidth, screenHeight, flags);
 		if(window == NULL)
 		{
 			LOG("Window could not be created! SDL_Error: %s\n", SDL_GetError());
@@ -113,9 +107,3 @@ bool ModuleWindow::CleanUp()
 	SDL_Quit();
 	return true;
 }
-
-void ModuleWindow::SetTitle(const char* title)
-{
-	SDL_SetWindowTitle(window, title);
-}
-

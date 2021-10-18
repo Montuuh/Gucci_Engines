@@ -62,7 +62,7 @@ update_status GuiPanelConfig::Update()
         {
             App->SetOrgName(orgName);
         }
-
+        
         /////// Max Fps Slider
         maxFps = App->GetMaxFps();
         if (ImGui::SliderInt("Max FPS", &maxFps, 1, 120))
@@ -99,67 +99,65 @@ update_status GuiPanelConfig::Update()
         
 
         /////// Brigthness slider
-        // brightness = App->window->GetBrightness();
+        float brightness = App->window->GetBrightness();
         if (ImGui::SliderFloat("Brightness", &brightness, 0.000f, 1.000f))
         {
-            // App->window->SetBrightness(brightness);
+             App->window->SetBrightness(brightness);
         }
 
         /////// Width slider
-        // width = App->window->GetWidth();
-        // int maxWidth = App->window->GetMaxWidth();
-        if (ImGui::SliderInt("Width", &width, 640, /* maxWidth */1537))
+        int width = App->window->GetWidth();
+        if (ImGui::SliderInt("Width", &width, 640, App->window->GetMaxWidth()) && !(App->window->IsFullscreen() || App->window->IsFullscreenDesktop()))
         {
-            // App->window->SetWidth(width);
+            App->window->SetWidth(width);
         }
 
         /////// Height slider
-        // height = App->window->GetHeight();
-        // int maxHeight = App->window->GetMaxHeight();
-        if (ImGui::SliderInt("Height", &height, 480, /* maxHeight */864))
+        int height = App->window->GetHeight();
+        if (ImGui::SliderInt("Height", &height, 480, App->window->GetMaxHeight()) && !(App->window->IsFullscreen() || App->window->IsFullscreenDesktop()))
         {
-            // App->window->SetHeight(height);
+            App->window->SetHeight(height);
         }
 
         /////// Refresh rate
         ImGui::Text("Refresh Rate:");
         ImGui::SameLine();
-        std::string temp = std::to_string(refreshRate /* should be like App->window->GetRefreshRate */); // int to const char* converter
+        std::string temp = std::to_string(App->window->GetRefreshRate()); // int to const char* converter
         const char* temp2 = temp.c_str();
         ImGui::PushStyleColor(ImGuiCol_Text, IM_COL32(255, 255, 0, 255));
         ImGui::Text(temp2);
         ImGui::PopStyleColor();
 
         /////// Fullscreen checkbox
-        //fullscreen = App->window->IsFullscreen();
-        if (ImGui::Checkbox("Fullscreen", &boolTest /* &fullscreen */))
+        bool fullscreen = App->window->IsFullscreen();
+        if (ImGui::Checkbox("Fullscreen", &fullscreen))
         {
-            // App->window->SetFullScreen(fullscreen);
+            App->window->SetFullscreen(fullscreen);
         }
 
         ImGui::SameLine();
 
         /////// Resizable checkbox
-        // resizable = App->window->IsResizable();
-        if (ImGui::Checkbox("Resizable", &boolTest /* &resizable */))
+        bool resizable = App->window->IsResizable();
+        if (ImGui::Checkbox("Resizable", &resizable))
         {
-            // App->window->SetResizableScreen(resizable);
+            App->window->SetResizable(resizable);
         }
 
         /////// Borderless checkbox
-        // borderless = App->window->IsBorderless();
-        if (ImGui::Checkbox("Borderless", &boolTest /* &borderless */))
+        bool borderless = App->window->IsBorderless();
+        if (ImGui::Checkbox("Borderless", &borderless))
         {
-            // App->window->SetBorderlessScreen(borderless);
+            App->window->SetBorderless(borderless);
         }
 
         ImGui::SameLine();
 
         /////// Fullscreen Desktop checkbox
-        // fullDesktop = App->window->IsFullDesktop();
-        if (ImGui::Checkbox("Full Desktop", &boolTest /* &fullDesktop */))
+        bool fullDesktop = App->window->IsFullscreenDesktop();
+        if (ImGui::Checkbox("Full Desktop", &fullDesktop))
         {
-            // App->window->SetFullDesktopScreen(fullDesktop);
+            App->window->SetFullscreenDesktop(fullDesktop);
         }
     }
 

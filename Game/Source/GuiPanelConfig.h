@@ -28,14 +28,6 @@ private:
 
 	// Window variables
 	bool windowActive;
-	float brightness;
-	int width;
-	int height;
-	bool fullscreen;
-	bool resizable;
-	bool borderless;
-	bool fullDesktop;
-	int refreshRate = 60;
 
 	// File System variables
 	bool fileSystemActive;

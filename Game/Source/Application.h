@@ -21,21 +21,21 @@ public:
 	update_status Update();
 	bool CleanUp();
 
-	void RequestBrowser(LPCSTR lpFile);
+	inline void RequestBrowser(LPCSTR lpFile) { ShellExecuteA(NULL, "open", lpFile, NULL, NULL, SW_SHOWNORMAL); }
 
-	const char* GetAppName();
-	void SetAppName(std::string _appName);
-	const char* GetOrgName();
-	void SetOrgName(std::string _orgName);
-	const int GetMaxFps();
-	void SetMaxFps(int _maxFps);
-	const int GetFps();
+	inline const char* GetAppName() { return appName.c_str(); }
+	inline void SetAppName(std::string _appName) { if (_appName.size() != 0) { appName = _appName; window->SetTitle(appName.c_str()); } }
+	inline const char* GetOrgName() { return orgName.c_str(); }
+	inline void SetOrgName(std::string _orgName) { if (_orgName.size() != 0) { orgName = _orgName; } }
+	inline const int GetMaxFps() { return maxFps; }
+	inline void SetMaxFps(int _maxFps) { maxFps = _maxFps; }
+	inline const int GetFps() { return 60; } // ToDo
 	
 
 private:
-	void AddModule(Module* mod);
 	void PrepareUpdate();
 	void FinishUpdate();
+	inline void AddModule(Module* mod) { list_modules.push_back(mod); }
 
 public:
 	ModuleWindow* window;
@@ -52,7 +52,6 @@ private:
 
 	std::string appName;
 	std::string orgName;
-
 	int maxFps;
 };
 
