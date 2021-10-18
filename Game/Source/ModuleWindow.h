@@ -4,6 +4,11 @@
 #include "Module.h"
 #include "SDL/include/SDL.h"
 
+#include "glew/include/GL/glew.h"
+#include "SDL/include/SDL_opengl.h"
+#include <gl/GL.h>
+#include <gl/GLU.h>
+
 class Application;
 
 class ModuleWindow : public Module
@@ -26,6 +31,7 @@ public:
 
 	//The surface contained by the window
 	SDL_Surface* screen_surface;
+
 };
 
 #endif // __ModuleWindow_H__
