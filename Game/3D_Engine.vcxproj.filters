@@ -51,18 +51,6 @@
     <ClInclude Include="Source\External\imgui\include\imstb_truetype.h">
       <Filter>External\Imgui</Filter>
     </ClInclude>
-    <ClInclude Include="Source\External\glew\include\GL\eglew.h">
-      <Filter>External\glew</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\External\glew\include\GL\glew.h">
-      <Filter>External\glew</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\External\glew\include\GL\glxew.h">
-      <Filter>External\glew</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\External\glew\include\GL\wglew.h">
-      <Filter>External\glew</Filter>
-    </ClInclude>
     <ClInclude Include="Source\External\SDL\include\begin_code.h">
       <Filter>External\SDL</Filter>
     </ClInclude>
@@ -509,6 +497,18 @@
     </ClInclude>
     <ClInclude Include="Source\GuiPanelConfig.h" />
     <ClInclude Include="Source\GuiPanelConsole.h" />
+    <ClInclude Include="Source\External\glew\include\GL\eglew.h">
+      <Filter>External\glew</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\External\glew\include\GL\glew.h">
+      <Filter>External\glew</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\External\glew\include\GL\glxew.h">
+      <Filter>External\glew</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\External\glew\include\GL\wglew.h">
+      <Filter>External\glew</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\External\imgui\include\imgui.cpp">
