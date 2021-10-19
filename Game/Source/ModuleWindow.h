@@ -12,6 +12,9 @@
 #include <gl/GL.h>
 #include <gl/GLU.h>
 
+#include "ModuleCamera3D.h"
+
+
 class Application;
 
 class ModuleWindow : public Module
@@ -22,6 +25,8 @@ public:
 
 	// Destructor
 	virtual ~ModuleWindow();
+	//update_status PreUpdate(float dt);
+	//update_status PostUpdate(float dt);
 
 	bool Init();
 	bool CleanUp();

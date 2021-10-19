@@ -29,15 +29,16 @@ bool ModuleWindow::Init()
 
 
 
+
 	GLenum err = glewInit();
 	////… check for errors
 	LOG("Using Glew %s", glewGetString(GLEW_VERSION));
 	// Should be 2.0
 
-	//LOG("Vendor: %s", glGetString(GL_VENDOR));
-	//LOG("Renderer: %s", glGetString(GL_RENDERER));
-	//LOG("OpenGL version supported %s", glGetString(GL_VERSION));
-	//LOG("GLSL: %s\n", glGetString(GL_SHADING_LANGUAGE_VERSION));
+	LOG("Vendor: %s", glGetString(GL_VENDOR));
+	LOG("Renderer: %s", glGetString(GL_RENDERER));
+	LOG("OpenGL version supported %s", glGetString(GL_VERSION));
+	LOG("GLSL: %s\n", glGetString(GL_SHADING_LANGUAGE_VERSION));
 
 
 	if(SDL_Init(SDL_INIT_VIDEO) < 0)
@@ -62,6 +63,7 @@ bool ModuleWindow::Init()
 			flags |= SDL_WINDOW_FULLSCREEN_DESKTOP;
 
 		//Use OpenGL 2.1
+		glViewport(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
 		SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
 		SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
 		SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24);
@@ -90,6 +92,24 @@ bool ModuleWindow::Init()
 
 	return ret;
 }
+
+//update_status ModuleWindow::PreUpdate(float dt)
+//{
+//	Color* c = new Color(0, 0, 0);
+//
+//	glClearColor(c->r, c->g, c->b, c->a);
+//	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+//	glMatrixMode(GL_MODELVIEW);
+//	//glLoadMatrixf(cam->GetOpenGLViewMatrix());
+//
+//}
+//
+//update_status ModuleWindow::PostUpdate(float dt)
+//{
+//
+//
+//
+//}
 
 
 
