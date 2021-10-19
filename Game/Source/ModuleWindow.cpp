@@ -1,8 +1,7 @@
 #include "Globals.h"
 #include "Application.h"
 #include "ModuleWindow.h"
-#include "glew/include/GL/glew.h"
-
+#define GLEW_STATIC
 
 
 ModuleWindow::ModuleWindow(Application* app, bool start_enabled) : Module(app, start_enabled)
@@ -30,9 +29,9 @@ bool ModuleWindow::Init()
 
 
 
-	//GLenum err = glewInit();
+	GLenum err = glewInit();
 	////… check for errors
-	//LOG("Using Glew %s", glewGetString(GLEW_VERSION));
+	LOG("Using Glew %s", glewGetString(GLEW_VERSION));
 	// Should be 2.0
 
 	//LOG("Vendor: %s", glGetString(GL_VENDOR));
