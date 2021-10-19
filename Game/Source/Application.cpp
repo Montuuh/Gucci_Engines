@@ -31,6 +31,8 @@ Application::Application()
 
 	// Set initial max FPS
 	maxFps = 60;
+
+	frameStart = 0;
 }
 
 Application::~Application()
@@ -72,13 +74,42 @@ bool Application::Init()
 // ---------------------------------------------
 void Application::PrepareUpdate()
 {
-	dt = (float)ms_timer.Read() / 1000.0f;
-	ms_timer.Start();
+	frameStart = ms_timer.Read();
+
+	// Start frame timing
+	totalFrames++;
+	startTicks = SDL_GetTicks();
+	startPerf = SDL_GetPerformanceCounter();
 }
 
 // ---------------------------------------------
 void Application::FinishUpdate()
 {
+	int frameEnd = ms_timer.Read();
+
+	// Cap FPS
+	if ((1000.0f / (float)maxFps) > dt)
+	{
+		SDL_Delay((1000.0f / (float)maxFps) - dt);
+		dt = (1000.0f / (float)maxFps);
+	}
+
+	// End frame timing
+	Uint32 endTicks = SDL_GetTicks();
+	Uint64 endPerf = SDL_GetPerformanceCounter();
+	Uint64 framePerf = endPerf - startPerf;
+	float frameTime = (endTicks - startTicks) / 1000.0f;
+	totalFrameTicks += endTicks - startTicks;
+
+	// Set fps variables
+	currentFps = 1.0f / frameTime;
+	averageFps = 1000.0f / ((float)totalFrameTicks / totalFrames);
+	currentPerf = framePerf;
+
+	// Get to know how much took to go from one frame to another
+	int msdt = frameEnd - frameStart;
+	dt = (float)msdt / 1000.0f;
+	
 }
 
 // Call PreUpdate, Update and PostUpdate on all modules

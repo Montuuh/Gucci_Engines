@@ -52,7 +52,18 @@ private:
 
 	std::string appName;
 	std::string orgName;
+
+	int frameStart;
 	int maxFps;
+	float currentFps;
+	float averageFps;
+	float currentPerf;
+
+
+	Uint32 totalFrameTicks = 0;
+	Uint32 totalFrames = 0;
+	Uint32 startTicks;
+	Uint64 startPerf;
 };
 
 #endif
