@@ -29,7 +29,9 @@ public:
 	inline void SetOrgName(std::string _orgName) { if (_orgName.size() != 0) { orgName = _orgName; } }
 	inline const int GetMaxFps() { return maxFps; }
 	inline void SetMaxFps(int _maxFps) { maxFps = _maxFps; }
-	inline const int GetFps() { return 60; } // ToDo
+	inline const float GetFps() { return (float)currentFps; }
+	inline const int GetAverageFps() { return averageFps; }
+	inline const float GetMs() { return (float)lastFrameMs; }
 	
 
 private:
@@ -54,6 +56,8 @@ private:
 	std::string orgName;
 
 	int frameStart;
+	Timer lastFrameMsTimer;
+	int lastFrameMs;
 	int maxFps;
 	float currentFps;
 	float averageFps;

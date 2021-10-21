@@ -80,6 +80,8 @@ void Application::PrepareUpdate()
 	totalFrames++;
 	startTicks = SDL_GetTicks();
 	startPerf = SDL_GetPerformanceCounter();
+
+	lastFrameMsTimer.Start();
 }
 
 // ---------------------------------------------
@@ -87,11 +89,15 @@ void Application::FinishUpdate()
 {
 	int frameEnd = ms_timer.Read();
 
+	lastFrameMs = lastFrameMsTimer.Read();
+	lastFrameMsTimer.Start();
+
 	// Cap FPS
 	if ((1000.0f / (float)maxFps) > dt)
 	{
 		SDL_Delay((1000.0f / (float)maxFps) - dt);
 		dt = (1000.0f / (float)maxFps);
+
 	}
 
 	// End frame timing
@@ -109,7 +115,6 @@ void Application::FinishUpdate()
 	// Get to know how much took to go from one frame to another
 	int msdt = frameEnd - frameStart;
 	dt = (float)msdt / 1000.0f;
-	
 }
 
 // Call PreUpdate, Update and PostUpdate on all modules

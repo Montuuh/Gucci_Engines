@@ -13,8 +13,10 @@ public:
 	update_status PreUpdate();
 	update_status Update();
 	update_status PostUpdate();
-private:
 
+
+private:
+	void UpdateFpsLog();
 public:
 
 private:
@@ -25,6 +27,9 @@ private:
 	int maxFps;
 	std::vector<float> fpsLog;
 	std::vector<float> msLog;
+	int fpsCounter;
+	int msCounter;
+	int average100Fps;
 
 	// Window variables
 	bool windowActive;

@@ -4,10 +4,12 @@
 
 #include "imgui\include\imgui.h"
 
-GuiPanelConfig::GuiPanelConfig(Application* App, bool start_enabled) : GuiPanel(App, start_enabled)
+GuiPanelConfig::GuiPanelConfig(Application* App, bool start_enabled) : GuiPanel(App, start_enabled), fpsLog(100), msLog(100)
 {
 	name = "panel config";
 	active = true;
+
+    fpsCounter = 0;
 }
 
 GuiPanelConfig::~GuiPanelConfig()
@@ -23,6 +25,8 @@ update_status GuiPanelConfig::PreUpdate()
 
 update_status GuiPanelConfig::Update()
 {
+    UpdateFpsLog();
+
     ImGui::Begin("Configuration"); // Configuration window
     // 1st Config Menu: Options
     if (ImGui::BeginMenu("Options")) 
@@ -79,11 +83,24 @@ update_status GuiPanelConfig::Update()
         ImGui::Text(temp2);
         ImGui::PopStyleColor();
 
+        /////// Average 100 framerate counter
+        ImGui::Text("Average Framerate:");
+        ImGui::SameLine();
+        temp = std::to_string(average100Fps); // int to const char* converter
+        temp2 = temp.c_str();
+        ImGui::PushStyleColor(ImGuiCol_Text, IM_COL32(255, 255, 0, 255));
+        ImGui::Text(temp2);
+        ImGui::PopStyleColor();
+
         /////// FPS Graph
-        // We need a FPS Getter to start implementing this
-        
+        std::string tempTitle = "Framerate ";
+        tempTitle += std::to_string((int)App->GetFps());
+        ImGui::PlotHistogram("##framerate", &fpsLog[0], fpsLog.size(), 0, tempTitle.c_str(), 0.0f, 100.0f, ImVec2(310.0f, 100.0f));
+
         /////// Milliseconds Graph
-        // We need a Milliseconds Getter to start implementing this
+        tempTitle = "Milliseconds ";
+        tempTitle += std::to_string((int)App->GetMs());
+        ImGui::PlotHistogram("##milliseconds", &msLog[0], msLog.size(), 0, tempTitle.c_str(), 0.0f, 100.0f, ImVec2(310.0f, 100.0f));
     }
 
     // 3rd Config Menu (With title): Window
@@ -107,14 +124,14 @@ update_status GuiPanelConfig::Update()
 
         /////// Width slider
         int width = App->window->GetWidth();
-        if (ImGui::SliderInt("Width", &width, 640, App->window->GetMaxWidth()) && !(App->window->IsFullscreen() || App->window->IsFullscreenDesktop()))
+        if (ImGui::SliderInt("Width", &width, 640, App->window->GetMaxWidth()) && !(App->window->IsFullscreen() || App->window->IsFullscreenDesktop()) && App->window->IsResizable())
         {
             App->window->SetWidth(width);
         }
 
         /////// Height slider
         int height = App->window->GetHeight();
-        if (ImGui::SliderInt("Height", &height, 480, App->window->GetMaxHeight()) && !(App->window->IsFullscreen() || App->window->IsFullscreenDesktop()))
+        if (ImGui::SliderInt("Height", &height, 480, App->window->GetMaxHeight()) && !(App->window->IsFullscreen() || App->window->IsFullscreenDesktop()) && App->window->IsResizable())
         {
             App->window->SetHeight(height);
         }
@@ -199,4 +216,30 @@ update_status GuiPanelConfig::PostUpdate()
 {
 
     return update_status::UPDATE_CONTINUE;
+}
+
+void GuiPanelConfig::UpdateFpsLog()
+{
+    static int fpsSum = 0;
+    if (fpsCounter < 100)
+        fpsCounter++;
+    else // Move 1 element from right to left of the vector --> fpsLog[0] = fpsLog[1] --> fpsLog[i] = fpsLog[i+1]
+    {
+        int i = 0;
+        while (i < 99)
+        {
+            fpsLog[i] = fpsLog[i + 1];
+            msLog[i] = msLog[i + 1];
+            fpsSum += fpsLog[i];
+            i++;
+        }
+    }
+    fpsLog[fpsCounter - 1] = App->GetFps(); // To update last element of the array, after having moved it
+    msLog[fpsCounter - 1] = App->GetMs();
+
+    if (fpsCounter == 100)
+    {
+        average100Fps = fpsSum / 100;
+        fpsSum = 0;
+    }
 }
