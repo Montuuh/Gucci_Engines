@@ -66,14 +66,16 @@ bool Application::Init()
 		item++;
 	}
 	
+	lastFrameMsTimer.Start();
 	ms_timer.Start();
 
 	return ret;
 }
 
-// ---------------------------------------------
+// Call this function before going through PreUpdate, Update and PostUpdate on each module
 void Application::PrepareUpdate()
 {
+	lastFrameMsTimer.Start();
 	frameStart = ms_timer.Read();
 
 	// Start frame timing
@@ -81,40 +83,37 @@ void Application::PrepareUpdate()
 	startTicks = SDL_GetTicks();
 	startPerf = SDL_GetPerformanceCounter();
 
-	lastFrameMsTimer.Start();
 }
 
-// ---------------------------------------------
+// Call this function after having gone through PreUpdate, Update and PostUpdate on each module
 void Application::FinishUpdate()
 {
 	int frameEnd = ms_timer.Read();
-
-	lastFrameMs = lastFrameMsTimer.Read();
-	lastFrameMsTimer.Start();
 
 	// Cap FPS
 	if ((1000.0f / (float)maxFps) > dt)
 	{
 		SDL_Delay((1000.0f / (float)maxFps) - dt);
 		dt = (1000.0f / (float)maxFps);
-
 	}
 
 	// End frame timing
 	Uint32 endTicks = SDL_GetTicks();
 	Uint64 endPerf = SDL_GetPerformanceCounter();
-	Uint64 framePerf = endPerf - startPerf;
 	float frameTime = (endTicks - startTicks) / 1000.0f;
 	totalFrameTicks += endTicks - startTicks;
 
 	// Set fps variables
 	currentFps = 1.0f / frameTime;
 	averageFps = 1000.0f / ((float)totalFrameTicks / totalFrames);
-	currentPerf = framePerf;
 
 	// Get to know how much took to go from one frame to another
 	int msdt = frameEnd - frameStart;
 	dt = (float)msdt / 1000.0f;
+
+	// Get to know milliseconds latency
+	lastFrameMs = lastFrameMsTimer.Read();
+	lastFrameMsTimer.Start();
 }
 
 // Call PreUpdate, Update and PostUpdate on all modules
