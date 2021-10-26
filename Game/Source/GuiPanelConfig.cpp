@@ -1,6 +1,7 @@
 #include "Globals.h"
 #include "Application.h"
 #include "GuiPanelConfig.h"
+#include "ModuleWindow.h"
 
 #include "imgui\include\imgui.h"
 
@@ -8,6 +9,9 @@ GuiPanelConfig::GuiPanelConfig(Application* App, bool start_enabled) : GuiPanel(
 {
 	name = "panel config";
 	active = true;
+    
+    buttonActive = true;
+    windowActive = App->window->active;
 
     fpsCounter = 0;
 }
@@ -27,7 +31,15 @@ update_status GuiPanelConfig::Update()
 {
     UpdateFpsLog();
 
-    ImGui::Begin("Configuration"); // Configuration window
+    ImGui::Begin("Configuration", &buttonActive); // Configuration window
+
+    // Manage close button on configuration window
+    if (!buttonActive)
+    {
+        buttonActive = !buttonActive;
+        active = !active;
+    }
+
     // 1st Config Menu: Options
     if (ImGui::BeginMenu("Options")) 
     {
@@ -57,7 +69,6 @@ update_status GuiPanelConfig::Update()
         {
             App->SetAppName(appName);
         }
-
 
         /////// Organization Name input text
         char orgName[200];
@@ -109,7 +120,7 @@ update_status GuiPanelConfig::Update()
         /////// Active window checkbox
         if (ImGui::Checkbox("Active", &windowActive))
         {
-
+            App->window->active = !App->window->active;
         }
 
         /////// App Icon input

@@ -14,6 +14,8 @@ ModuleWindow::ModuleWindow(Application* app, bool start_enabled) : Module(app, s
 	resizable = true;
 	borderless = false;
 	fullscreenDesktop = false;
+
+	active = true;
 }
 
 // Destructor
@@ -89,7 +91,6 @@ bool ModuleWindow::Init()
 		}
 	}
 
-
 	return ret;
 }
 
@@ -104,12 +105,14 @@ bool ModuleWindow::Init()
 //
 //}
 //
-//update_status ModuleWindow::PostUpdate(float dt)
-//{
-//
-//
-//
-//}
+update_status ModuleWindow::PostUpdate(float dt)
+{
+	update_status ret = update_status::UPDATE_CONTINUE;
+
+	if (!active) return update_status::UPDATE_STOP;
+
+	return ret;
+}
 
 
 

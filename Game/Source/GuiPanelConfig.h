@@ -21,7 +21,7 @@ public:
 
 private:
 	// pending to delete. This is only for testing and creating checkboxes
-	bool boolTest;
+	bool buttonActive;
 
 	// Application variables
 	int maxFps;

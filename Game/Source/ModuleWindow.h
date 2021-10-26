@@ -26,7 +26,7 @@ public:
 	// Destructor
 	virtual ~ModuleWindow();
 	//update_status PreUpdate(float dt);
-	//update_status PostUpdate(float dt);
+	update_status PostUpdate(float dt);
 
 	bool Init();
 	bool CleanUp();
@@ -57,6 +57,8 @@ public:
 
 	//The surface contained by the window
 	SDL_Surface* screen_surface;
+
+	bool active;
 
 private:
 	int screenWidth;
