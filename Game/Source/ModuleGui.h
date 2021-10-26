@@ -4,6 +4,7 @@
 #include "Module.h"
 #include "GuiPanel.h"
 #include "GuiPanelConfig.h"
+#include "GuiPanelConsole.h"
 
 #include "imgui\include\imgui.h"
 
@@ -33,11 +34,14 @@ public:
 	bool demoWindow;
 	std::vector<GuiPanel*> list_panels;
 
-	GuiPanelConfig* guiPanelConfig;
-	
+
+
 	/*ImGuiStyle* style;*/
 	
 private:
+	GuiPanelConfig* guiPanelConfig;
+	GuiPanelConsole* guiPanelConsole;
+
 	ImGuiIO io;
 };
 

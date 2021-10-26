@@ -13,6 +13,9 @@
 
 ModuleGui::ModuleGui(Application* app, bool start_enabled) : Module(app, start_enabled)
 {
+    demoWindow = false;
+    guiPanelConfig = new GuiPanelConfig(App, false);
+    guiPanelConsole = new GuiPanelConsole(App, false);
 }
 
 // Destructor
@@ -54,11 +57,10 @@ bool ModuleGui::Init()
 bool ModuleGui::Start()
 {
     bool ret = true;
-    
-    demoWindow = false;
 
-    guiPanelConfig = new GuiPanelConfig(App, false);
+    // Add gui panels
     AddGuiPanel(guiPanelConfig);
+    AddGuiPanel(guiPanelConsole);
 
     // Setting ImGui style (colors, etc)
     /*style = &ImGui::GetStyle();*/
@@ -191,8 +193,8 @@ update_status ModuleGui::InputManagement()
     update_status ret = update_status::UPDATE_CONTINUE;
 
     ////// Console and cofiguration window hotkeys
-    // if (App->input->keyboard[SDL_SCANCODE_1] == KEY_DOWN)
-        // guiPanelConsole->active = !guiPanelConsole->active;
+     if (App->input->keyboard[SDL_SCANCODE_1] == KEY_DOWN)
+         guiPanelConsole->active = !guiPanelConsole->active;
     if (App->input->keyboard[SDL_SCANCODE_4] == KEY_DOWN)
         guiPanelConfig->active = !guiPanelConfig->active;
 

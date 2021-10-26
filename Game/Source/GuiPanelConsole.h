@@ -18,7 +18,8 @@ private:
 public:
 
 private:
-
+	// This bool servers for Begin(), as a parameter to determine if the console window is open or not
+	bool buttonActive;
 };
 
 #endif

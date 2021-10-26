@@ -20,7 +20,7 @@ private:
 public:
 
 private:
-	// pending to delete. This is only for testing and creating checkboxes
+	// This bool servers for Begin(), as a parameter to determine if the config window is open or not
 	bool buttonActive;
 
 	// Application variables

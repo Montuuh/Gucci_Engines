@@ -31,7 +31,15 @@ update_status GuiPanelConfig::Update()
 {
     UpdateFpsLog();
 
-    ImGui::Begin("Configuration", &buttonActive); // Configuration window
+    // Set some window configuration before calling Begin()
+    ImVec2 minSize = { 300, 400 };
+    ImVec2 maxSize = { 450, 550 };
+    ImGui::SetNextWindowSize(minSize, ImGuiCond_Once);
+    ImGui::SetNextWindowPos({ App->window->GetWidth() - minSize.x, 25 }, ImGuiCond_Once);
+    ImGui::SetNextWindowSizeConstraints(minSize, maxSize);
+
+    // Configuration window Begin()
+    ImGui::Begin("Configuration", &buttonActive, ImGuiWindowFlags_NoFocusOnAppearing); 
 
     // Manage close button on configuration window
     if (!buttonActive)
@@ -218,7 +226,9 @@ update_status GuiPanelConfig::Update()
 
         }
     }
-    ImGui::End(); // End configuration window
+
+    // Configuration window End()
+    ImGui::End();
 
     return update_status::UPDATE_CONTINUE;
 }
