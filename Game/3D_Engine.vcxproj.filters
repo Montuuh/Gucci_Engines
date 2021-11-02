@@ -509,6 +509,7 @@
     <ClInclude Include="Source\External\glew\include\GL\wglew.h">
       <Filter>External\glew</Filter>
     </ClInclude>
+    <ClInclude Include="Source\ModuleScene.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\External\imgui\include\imgui.cpp">
@@ -641,6 +642,7 @@
     </ClCompile>
     <ClCompile Include="Source\GuiPanelConfig.cpp" />
     <ClCompile Include="Source\GuiPanelConsole.cpp" />
+    <ClCompile Include="Source\ModuleScene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Source\External\SDL\include\SDL_config.h.cmake">

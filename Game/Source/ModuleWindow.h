@@ -25,7 +25,7 @@ public:
 
 	// Destructor
 	virtual ~ModuleWindow();
-	//update_status PreUpdate(float dt);
+	update_status PreUpdate(float dt);
 	update_status PostUpdate(float dt);
 
 	bool Init();

@@ -1,15 +1,7 @@
-#include "Globals.h"
 #include "Application.h"
 #include "ModuleGui.h"
 
-#include "GuiPanel.h"
-#include "GuiPanelConfig.h"
 
-#include "imgui\include\imgui.h"
-#include "imgui\include\imgui_impl_opengl2.h"
-#include "imgui\include\imgui_impl_sdl.h"
-
-#include "MathGeoLib/include/MathGeoLib.h"
 
 ModuleGui::ModuleGui(Application* app, bool start_enabled) : Module(app, start_enabled)
 {

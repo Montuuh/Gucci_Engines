@@ -6,10 +6,10 @@
 #include "Module.h"
 #include "ModuleWindow.h"
 #include "ModuleInput.h"
+#include "ModuleScene.h"
 #include "ModuleRenderer3D.h"
 #include "ModuleCamera3D.h"
 #include "ModuleGui.h"
-
 
 class Application
 {
@@ -42,6 +42,7 @@ private:
 public:
 	ModuleWindow* window;
 	ModuleInput* input;
+	ModuleScene* scene;
 	ModuleGui* gui;
 	ModuleRenderer3D* renderer3D;
 	ModuleCamera3D* camera;

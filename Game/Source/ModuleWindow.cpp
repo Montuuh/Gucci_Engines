@@ -29,9 +29,6 @@ bool ModuleWindow::Init()
 	LOG("Init SDL window & surface");
 	bool ret = true;
 
-
-
-
 	GLenum err = glewInit();
 	////… check for errors
 	LOG("Using Glew %s", glewGetString(GLEW_VERSION));
@@ -65,20 +62,15 @@ bool ModuleWindow::Init()
 			flags |= SDL_WINDOW_FULLSCREEN_DESKTOP;
 
 		//Use OpenGL 2.1
-		glViewport(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-		SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
-		SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
-		SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24);
-		SDL_GL_SetAttribute(SDL_GL_STENCIL_SIZE, 8);
-		SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
+		SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 2);
 		SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 1);
 
-		glMatrixMode(GL_PROJECTION);
-		glLoadIdentity();
+		//glMatrixMode(GL_PROJECTION);
+		//glLoadIdentity();
 
 		
 		// Creating window
-		window = SDL_CreateWindow(App->GetAppName(), 0, 30, screenWidth, screenHeight, flags);
+		window = SDL_CreateWindow(App->GetAppName(), SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, screenWidth, screenHeight, flags);
 		if(window == NULL)
 		{
 			LOG("Window could not be created! SDL_Error: %s\n", SDL_GetError());
@@ -88,23 +80,27 @@ bool ModuleWindow::Init()
 		{
 			//Get window surface
 			screen_surface = SDL_GetWindowSurface(window);
+			SetBrightness(SDL_GetWindowBrightness(window));
 		}
 	}
 
 	return ret;
 }
 
-//update_status ModuleWindow::PreUpdate(float dt)
-//{
-//	Color* c = new Color(0, 0, 0);
-//
-//	glClearColor(c->r, c->g, c->b, c->a);
-//	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-//	glMatrixMode(GL_MODELVIEW);
-//	//glLoadMatrixf(cam->GetOpenGLViewMatrix());
-//
-//}
-//
+update_status ModuleWindow::PreUpdate(float dt)
+{
+	update_status ret = update_status::UPDATE_CONTINUE;
+
+	//Color* c = new Color(0, 0, 0);
+
+	//glClearColor(c->r, c->g, c->b, c->a);
+	//glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	//glMatrixMode(GL_MODELVIEW);
+	//glLoadMatrixf(cam->GetOpenGLViewMatrix());
+
+	return ret;
+}
+
 update_status ModuleWindow::PostUpdate(float dt)
 {
 	update_status ret = update_status::UPDATE_CONTINUE;

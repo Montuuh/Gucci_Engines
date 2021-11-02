@@ -2,11 +2,17 @@
 #define __ModuleGUI_H__
 
 #include "Module.h"
+#include "Globals.h"
+
 #include "GuiPanel.h"
 #include "GuiPanelConfig.h"
 #include "GuiPanelConsole.h"
 
 #include "imgui\include\imgui.h"
+#include "imgui\include\imgui_impl_opengl2.h"
+#include "imgui\include\imgui_impl_sdl.h"
+
+#include "MathGeoLib/include/MathGeoLib.h"
 
 class Application;
 
