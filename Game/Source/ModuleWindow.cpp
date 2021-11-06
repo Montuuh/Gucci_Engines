@@ -65,9 +65,6 @@ bool ModuleWindow::Init()
 		SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 2);
 		SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 1);
 
-		//glMatrixMode(GL_PROJECTION);
-		//glLoadIdentity();
-
 		
 		// Creating window
 		window = SDL_CreateWindow(App->GetAppName(), SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, screenWidth, screenHeight, flags);
@@ -91,12 +88,6 @@ update_status ModuleWindow::PreUpdate(float dt)
 {
 	update_status ret = update_status::UPDATE_CONTINUE;
 
-	//Color* c = new Color(0, 0, 0);
-
-	//glClearColor(c->r, c->g, c->b, c->a);
-	//glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	//glMatrixMode(GL_MODELVIEW);
-	//glLoadMatrixf(cam->GetOpenGLViewMatrix());
 
 	return ret;
 }

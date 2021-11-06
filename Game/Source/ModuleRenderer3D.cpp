@@ -8,6 +8,9 @@
 #include <gl/GL.h>
 #include <gl/GLU.h>
 
+#include "glew/include/GL/glew.h"
+
+
 #pragma comment (lib, "glu32.lib")    /* link OpenGL Utility lib     */
 #pragma comment (lib, "opengl32.lib") /* link Microsoft OpenGL lib   */
 
@@ -31,6 +34,19 @@ bool ModuleRenderer3D::Init()
 	SDL_GL_SetAttribute(SDL_GL_STENCIL_SIZE, 8);
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 1);
+
+	GLenum err = glewInit();
+	// … check for errors
+	LOG("Using Glew %s", glewGetString(GLEW_VERSION));
+	// Should be 2.0
+
+	LOG("Vendor: %s", glGetString(GL_VENDOR));
+	LOG("Renderer: %s", glGetString(GL_RENDERER));
+	LOG("OpenGL version supported %s", glGetString(GL_VERSION));
+	LOG("GLSL: %s\n", glGetString(GL_SHADING_LANGUAGE_VERSION));
+
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
 
 	//Create context
 	context = SDL_GL_CreateContext(App->window->window);
@@ -104,10 +120,23 @@ bool ModuleRenderer3D::Init()
 		lights[0].Active(true);
 		glEnable(GL_LIGHTING);
 		glEnable(GL_COLOR_MATERIAL);
+
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		glEnable(GL_TEXTURE_2D);
 	}
 
 	// Projection matrix for
 	OnResize(SCREEN_WIDTH, SCREEN_HEIGHT);
+
+
+	glLineWidth(2.0f);
+	glBegin(GL_LINES);
+	glVertex3f(0.f, 0.f, 0.f);
+	glVertex3f(0.f, 10.f, 0.f);
+	glEnd();
+	glLineWidth(1.0f);
+
+	App->camera->LookAt(vec3(0.f, 5.f, 0.f));
 
 	return ret;
 }
@@ -127,7 +156,37 @@ update_status ModuleRenderer3D::PreUpdate(float dt)
 	for(uint i = 0; i < MAX_LIGHTS; ++i)
 		lights[i].Render();
 
+	
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
 	return UPDATE_CONTINUE;
+}
+
+update_status ModuleRenderer3D::Update(float dt)
+{
+	// CREATE GRID
+	glLineWidth(3.0f);
+
+	glBegin(GL_LINES);
+	glColor4f(0.8f, 0.8f, 0.8f, 0.8f);
+
+	float d = 40.0f;
+
+	for (float i = -d; i <= d; i += 2.0f)
+	{
+		glVertex3f(i, 0.0f, -d);
+		glVertex3f(i, 0.0f, d);
+		glVertex3f(-d, 0.0f, i);
+		glVertex3f(d, 0.0f, i);
+	}
+	glEnd();
+
+
+
+
+	return UPDATE_CONTINUE;
+
+
 }
 
 // PostUpdate present buffer to screen
@@ -135,6 +194,7 @@ update_status ModuleRenderer3D::PostUpdate(float dt)
 {
 	SDL_GL_SwapWindow(App->window->window);
 	return UPDATE_CONTINUE;
+
 }
 
 // Called before quitting
