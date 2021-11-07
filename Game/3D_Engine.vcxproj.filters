@@ -28,6 +28,9 @@
     <Filter Include="External\assimp">
       <UniqueIdentifier>{1a98068b-aedb-4a5f-9142-5fdac10ec492}</UniqueIdentifier>
     </Filter>
+    <Filter Include="External\stb">
+      <UniqueIdentifier>{f7df9874-909c-4f70-bf97-d22dcc280a3e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\External\imgui\include\imconfig.h">
@@ -732,6 +735,63 @@
     <ClInclude Include="Source\External\assimp\include\assimp\ZipArchiveIOSystem.h">
       <Filter>External\assimp</Filter>
     </ClInclude>
+    <ClInclude Include="Source\External\stb\stb_c_lexer.h">
+      <Filter>External\stb</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\External\stb\stb_connected_components.h">
+      <Filter>External\stb</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\External\stb\stb_divide.h">
+      <Filter>External\stb</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\External\stb\stb_ds.h">
+      <Filter>External\stb</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\External\stb\stb_dxt.h">
+      <Filter>External\stb</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\External\stb\stb_easy_font.h">
+      <Filter>External\stb</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\External\stb\stb_herringbone_wang_tile.h">
+      <Filter>External\stb</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\External\stb\stb_hexwave.h">
+      <Filter>External\stb</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\External\stb\stb_image.h">
+      <Filter>External\stb</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\External\stb\stb_image_resize.h">
+      <Filter>External\stb</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\External\stb\stb_image_write.h">
+      <Filter>External\stb</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\External\stb\stb_include.h">
+      <Filter>External\stb</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\External\stb\stb_leakcheck.h">
+      <Filter>External\stb</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\External\stb\stb_rect_pack.h">
+      <Filter>External\stb</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\External\stb\stb_sprintf.h">
+      <Filter>External\stb</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\External\stb\stb_textedit.h">
+      <Filter>External\stb</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\External\stb\stb_tilemap_editor.h">
+      <Filter>External\stb</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\External\stb\stb_truetype.h">
+      <Filter>External\stb</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\External\stb\stb_voxel_render.h">
+      <Filter>External\stb</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\External\imgui\include\imgui.cpp">
@@ -865,6 +925,9 @@
     <ClCompile Include="Source\GuiPanelConfig.cpp" />
     <ClCompile Include="Source\GuiPanelConsole.cpp" />
     <ClCompile Include="Source\ModuleScene.cpp" />
+    <ClCompile Include="Source\External\stb\stb_vorbis.c">
+      <Filter>External\stb</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Source\External\SDL\include\SDL_config.h.cmake">

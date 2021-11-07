@@ -9,11 +9,6 @@
 #include <gl/GL.h>
 #include <gl/GLU.h>
 
-#include "assimp/include/assimp/cimport.h"
-#include "assimp/include/assimp/scene.h"
-#include "assimp/include/assimp/postprocess.h"
-
-
 #include "glew/include/GL/glew.h"
 
 
@@ -33,7 +28,7 @@ bool ModuleRenderer3D::Init()
 {
 	LOG("Creating 3D Renderer context");
 	bool ret = true;
-	
+
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
 	SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
 	SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24);
