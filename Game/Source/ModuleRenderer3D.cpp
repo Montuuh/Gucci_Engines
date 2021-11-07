@@ -129,12 +129,7 @@ bool ModuleRenderer3D::Init()
 	OnResize(SCREEN_WIDTH, SCREEN_HEIGHT);
 
 
-	glLineWidth(2.0f);
-	glBegin(GL_LINES);
-	glVertex3f(0.f, 0.f, 0.f);
-	glVertex3f(0.f, 10.f, 0.f);
-	glEnd();
-	glLineWidth(1.0f);
+	
 
 	App->camera->LookAt(vec3(0.f, 5.f, 0.f));
 
@@ -164,23 +159,8 @@ update_status ModuleRenderer3D::PreUpdate(float dt)
 
 update_status ModuleRenderer3D::Update(float dt)
 {
-	// CREATE GRID
-	glLineWidth(3.0f);
-
-	glBegin(GL_LINES);
-	glColor4f(0.8f, 0.8f, 0.8f, 0.8f);
-
-	float d = 40.0f;
-
-	for (float i = -d; i <= d; i += 2.0f)
-	{
-		glVertex3f(i, 0.0f, -d);
-		glVertex3f(i, 0.0f, d);
-		glVertex3f(-d, 0.0f, i);
-		glVertex3f(d, 0.0f, i);
-	}
-	glEnd();
-
+	
+	
 
 
 
@@ -192,6 +172,10 @@ update_status ModuleRenderer3D::Update(float dt)
 // PostUpdate present buffer to screen
 update_status ModuleRenderer3D::PostUpdate(float dt)
 {
+
+	PrintGrid();
+	
+
 	SDL_GL_SwapWindow(App->window->window);
 	return UPDATE_CONTINUE;
 
@@ -219,4 +203,35 @@ void ModuleRenderer3D::OnResize(int width, int height)
 
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
+}
+
+void ModuleRenderer3D::PrintGrid()
+{
+	// CREATE GRID
+	glLineWidth(3.0f);
+
+	glBegin(GL_LINES);
+	glColor4f(0.8f, 0.8f, 0.8f, 0.8f);
+
+	float numLines = 40.0f;
+
+	for (float i = -numLines; i <= numLines; i += 2.0f)
+	{
+		glVertex3f(i, 0.0f, -numLines);
+		glVertex3f(i, 0.0f, numLines);
+		glVertex3f(-numLines, 0.0f, i);
+		glVertex3f(numLines, 0.0f, i);
+	}
+	glEnd();
+
+	//Center Line
+	glLineWidth(2.0f);
+	glBegin(GL_LINES);
+	glVertex3f(0.f, 0.f, 0.f);
+	glVertex3f(0.f, 10.f, 0.f);
+	glEnd();
+	glLineWidth(1.0f);
+
+
+
 }
