@@ -411,7 +411,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
-      <AdditionalLibraryDirectories>$(SolutionDir)Game\Source\External\glew\lib\libx86;$(SolutionDir)Game\Source\External\SDL\libx86;$(SolutionDir)Game\Source\External\MathGeoLib\libx86\Debug</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)Game\Source\External\glew\lib\libx86;$(SolutionDir)Game\Source\External\SDL\libx86;$(SolutionDir)Game\Source\External\MathGeoLib\libx86\Debug;$(SolutionDir)Game\Source\External\assimp\libx86</AdditionalLibraryDirectories>
       <AdditionalDependencies>%(AdditionalDependencies);SDL2.lib;SDL2main.lib;SDL2test.lib;Shell32.lib;MathGeoLib.lib;glew32.lib;glew32s.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>

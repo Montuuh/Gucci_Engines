@@ -36,7 +36,8 @@ bool ModuleRenderer3D::Init()
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 1);
 
-	GLenum err = glewInit();
+
+
 	// … check for errors
 	LOG("Using Glew %s", glewGetString(GLEW_VERSION));
 	// Should be 2.0
@@ -56,7 +57,10 @@ bool ModuleRenderer3D::Init()
 		LOG("OpenGL context could not be created! SDL_Error: %s\n", SDL_GetError());
 		ret = false;
 	}
-	
+
+
+	GLenum err = glewInit();
+
 
 	if(ret == true)
 	{
@@ -125,6 +129,7 @@ bool ModuleRenderer3D::Init()
 
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 		glEnable(GL_TEXTURE_2D);
+		glShadeModel(GL_SMOOTH);
 	}
 
 	// Projection matrix for
@@ -182,9 +187,10 @@ update_status ModuleRenderer3D::PostUpdate(float dt)
 	PrintGrid();
 	
 	CubePrimitive cube;
-	cube.Draw();
+	//cube.Draw();
 
 	SDL_GL_SwapWindow(App->window->window);
+
 	return UPDATE_CONTINUE;
 
 }
