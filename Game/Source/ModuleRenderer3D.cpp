@@ -1,12 +1,18 @@
 #include "Globals.h"
 #include "Application.h"
 #include "ModuleRenderer3D.h"
+#include "PrimitiveMeshes.h"
 #include "SDL\include\SDL_opengl.h"
 #include "imgui\include\imgui.h"
 #include "imgui\include\imgui_impl_opengl2.h"
 #include "imgui\include\imgui_impl_sdl.h"
 #include <gl/GL.h>
 #include <gl/GLU.h>
+
+#include "assimp/include/assimp/cimport.h"
+#include "assimp/include/assimp/scene.h"
+#include "assimp/include/assimp/postprocess.h"
+
 
 #include "glew/include/GL/glew.h"
 
@@ -27,7 +33,7 @@ bool ModuleRenderer3D::Init()
 {
 	LOG("Creating 3D Renderer context");
 	bool ret = true;
-
+	
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
 	SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
 	SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24);
@@ -56,6 +62,7 @@ bool ModuleRenderer3D::Init()
 		ret = false;
 	}
 	
+
 	if(ret == true)
 	{
 		//Use Vsync
@@ -129,7 +136,18 @@ bool ModuleRenderer3D::Init()
 	OnResize(SCREEN_WIDTH, SCREEN_HEIGHT);
 
 
-	
+	//GLfloat vertex[] = {
+	//						1,1,1,    -1,1,1,    -1,-1,1,    1,-1,1,        // v0-v1-v2-v3
+	//						1,1,1,     1,-1,1,    1,-1,-1,   1,1,-1,        // v0-v3-v4-v5
+	//						1,1,1,     1,1,-1,   -1,1,-1,   -1,1,1,         // v0-v5-v6-v1
+	//					   -1,1,1,    -1,1,-1,   -1,-1,-1,  -1,-1,1,        // v1-v6-v7-v2
+	//					   -1,-1,-1,   1,-1,-1,   1,-1,1,   -1,-1,1,        // v7-v4-v3-v2
+	//						1,-1,-1,  -1,-1,-1,  -1,1,-1,    1,1,-1 };        // v4-v7-v6-v5
+
+	//unsigned int my_id = 0;
+	//glGenBuffersARB(1, (GLuint*)&my_id);
+	//glBindBuffer(GL_ARRAY_BUFFER, my_id);
+	//glBufferData(GL_ARRAY_BUFFER, sizeof(vertex), vertex, GL_STATIC_DRAW);
 
 	App->camera->LookAt(vec3(0.f, 5.f, 0.f));
 
@@ -159,22 +177,17 @@ update_status ModuleRenderer3D::PreUpdate(float dt)
 
 update_status ModuleRenderer3D::Update(float dt)
 {
-	
-	
-
-
 
 	return UPDATE_CONTINUE;
-
-
 }
 
 // PostUpdate present buffer to screen
 update_status ModuleRenderer3D::PostUpdate(float dt)
 {
-
 	PrintGrid();
 	
+	CubePrimitive cube;
+	cube.Draw();
 
 	SDL_GL_SwapWindow(App->window->window);
 	return UPDATE_CONTINUE;

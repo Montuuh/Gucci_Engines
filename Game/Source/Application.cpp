@@ -26,6 +26,7 @@ Application::Application()
 	// Renderer last!
 	AddModule(renderer3D);
 
+
 	// Set initial app and organization names
 	appName = "Gucci Engines";
 	orgName = "UPC Citm";
