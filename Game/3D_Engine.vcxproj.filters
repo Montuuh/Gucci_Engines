@@ -792,6 +792,7 @@
     <ClInclude Include="Source\External\stb\stb_voxel_render.h">
       <Filter>External\stb</Filter>
     </ClInclude>
+    <ClInclude Include="Source\ModuleFbxLoader.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\External\imgui\include\imgui.cpp">
@@ -928,6 +929,7 @@
     <ClCompile Include="Source\External\stb\stb_vorbis.c">
       <Filter>External\stb</Filter>
     </ClCompile>
+    <ClCompile Include="Source\ModuleFbxLoader.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Source\External\SDL\include\SDL_config.h.cmake">
