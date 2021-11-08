@@ -47,6 +47,7 @@ update_status GuiPanelPrimitives::Update()
 
     if (ImGui::Checkbox("Cube", &App->renderer3D->cubePrimitiveDraw));
     if (ImGui::Checkbox("Pyramid", &App->renderer3D->pyramidPrimitiveDraw));
+    if (ImGui::Checkbox("Sphere", &App->renderer3D->spherePrimitiveDraw));
 
     // Console window End()
     ImGui::End();

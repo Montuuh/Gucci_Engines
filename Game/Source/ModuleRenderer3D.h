@@ -32,4 +32,5 @@ public:
 
 	bool cubePrimitiveDraw = false;
 	bool pyramidPrimitiveDraw = false;
+	bool spherePrimitiveDraw = false;
 };

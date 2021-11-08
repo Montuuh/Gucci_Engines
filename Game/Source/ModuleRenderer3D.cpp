@@ -249,6 +249,9 @@ void ModuleRenderer3D::DrawPrimitives()
 {
 	CubePrimitive* cube = new CubePrimitive;
 	PyramidPrimitive* pyramid = new PyramidPrimitive;
+	SpherePrimitive* sphere = new SpherePrimitive;
+
+
 	if (cubePrimitiveDraw)
 	{
 		cube->DrawDirectMode();
@@ -266,5 +269,15 @@ void ModuleRenderer3D::DrawPrimitives()
 	else
 	{
 		delete pyramid;
+	}
+
+	if (spherePrimitiveDraw)
+	{
+		sphere->DrawDirectMode();
+
+	}
+	else
+	{
+		delete sphere;
 	}
 }
