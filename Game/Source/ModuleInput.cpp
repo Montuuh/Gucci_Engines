@@ -119,9 +119,10 @@ update_status ModuleInput::PreUpdate(float dt)
 				if (!filePath.empty())
 				{
 					if (filePath.find(".fbx") != std::string::npos)
-						App->fbx->LoadMeshToScene(filePath.c_str());
+					{
+						App->fbx->LoadFbxToScene(filePath.c_str(), "Assets/Textures/Baker_house.png");
+					}	
 				}
-
 				break;
 			}
 		}

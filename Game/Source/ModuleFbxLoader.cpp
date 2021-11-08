@@ -45,9 +45,9 @@ bool ModuleFbxLoader::CleanUp()
 	return ret;
 }
 
-void ModuleFbxLoader::LoadMeshToScene(const char* path)
+void ModuleFbxLoader::LoadFbxToScene(const char* path, const char* texPath)
 {
-	std::vector<Mesh*> meshList = LoadFbx(path);
+	std::vector<Mesh*> meshList = LoadFbx(path, texPath);
 	for (int i = 0; i < meshList.size(); i++) 
 	{
 		if (meshList[i] != nullptr) meshList[i]->InitBuffers();
@@ -55,7 +55,7 @@ void ModuleFbxLoader::LoadMeshToScene(const char* path)
 }
 
 // Fbx Loader
-std::vector<Mesh*> ModuleFbxLoader::LoadFbx(const char*path)
+std::vector<Mesh*> ModuleFbxLoader::LoadFbx(const char*path, const char* texPath)
 {
 	const aiScene* scene = aiImportFile(path, aiProcessPreset_TargetRealtime_MaxQuality);
 	if (scene != nullptr && scene->HasMeshes())
@@ -65,7 +65,7 @@ std::vector<Mesh*> ModuleFbxLoader::LoadFbx(const char*path)
 		{
 			Mesh* mesh = LoadMesh(scene->mMeshes[i]);
 			if (mesh != nullptr) fbxList.push_back(mesh);
-			Texture* Tex = LoadTexture(scene, scene->mMeshes[i], "Assets/Textures/Baker_house.png", "BakerHouse");
+			Texture* Tex = LoadTexture(scene, scene->mMeshes[i], texPath, "BakerHouse");
 			mesh->SetTexture(Tex);
 		}
 		aiReleaseImport(scene);

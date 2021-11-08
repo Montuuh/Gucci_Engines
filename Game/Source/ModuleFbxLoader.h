@@ -25,10 +25,10 @@ public:
 	bool CleanUp();
 
 	// Load a mesh from a path
-	void LoadMeshToScene(const char* path);
+	void LoadFbxToScene(const char* path, const char* texPath);
 	
 	// Fbx Loader
-	std::vector<Mesh*> LoadFbx(const char* path);
+	std::vector<Mesh*> LoadFbx(const char* path, const char* texPath);
 
 	// Mesh loader (vertexs, normals, indices and texture coords)
 	Mesh* ModuleFbxLoader::LoadMesh(aiMesh* aiMesh);
