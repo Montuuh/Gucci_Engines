@@ -110,6 +110,19 @@ update_status ModuleInput::PreUpdate(float dt)
 			{
 				if(e.window.event == SDL_WINDOWEVENT_RESIZED)
 					App->renderer3D->OnResize(e.window.data1, e.window.data2);
+				break;
+			}
+			case SDL_DROPFILE:
+			{
+				std::string filePath;
+				filePath.assign(e.drop.file);
+				if (!filePath.empty())
+				{
+					if (filePath.find(".fbx") != std::string::npos)
+						App->fbx->LoadMeshToScene(filePath.c_str());
+				}
+
+				break;
 			}
 		}
 	}

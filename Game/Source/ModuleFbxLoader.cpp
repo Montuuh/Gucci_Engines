@@ -33,8 +33,6 @@ bool ModuleFbxLoader::Start()
 {
 	bool ret = true;
 
-	LoadMeshToScene("Assets/Meshes/warrior.FBX");
-	LoadMeshToScene("Assets/Meshes/BakerHouse.fbx");
 
 	return ret;
 }
