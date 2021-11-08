@@ -171,13 +171,18 @@ update_status ModuleRenderer3D::Update(float dt)
 // PostUpdate present buffer to screen
 update_status ModuleRenderer3D::PostUpdate(float dt)
 {
+	// Grid Rendering
+	PrintGrid();
+
+	// Fbx rendering
 	int p = App->fbx->fbxList.size();
 	for (int i = 0; i < App->fbx->fbxList.size(); i++) {
 		App->fbx->fbxList[i]->Render();
 	}
 
-	PrintGrid();
 
+
+	// Print ImGui after the fbx and grid rendering in order to put it forward
 	App->gui->RenderGui();
 
 	SDL_GL_SwapWindow(App->window->window);

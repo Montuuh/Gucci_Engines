@@ -7,7 +7,7 @@
 GuiPanelConsole::GuiPanelConsole(Application* App, bool start_enabled) : GuiPanel(App, start_enabled)
 {
     name = "panel console";
-    active = true;
+    active = false;
 
     buttonActive = true;
 }
@@ -37,11 +37,11 @@ update_status GuiPanelConsole::Update()
     // Console window Begin()
     ImGui::Begin("Console", &buttonActive, ImGuiWindowFlags_NoFocusOnAppearing); 
 
-    // Manage close button on configuration window
+    // Manage close button on console window
     if (!buttonActive)
     {
-        buttonActive = !buttonActive;
-        active = !active;
+        buttonActive = true;
+        active = false;
     }
 
     // Console window End()

@@ -8,7 +8,7 @@
 GuiPanelConfig::GuiPanelConfig(Application* App, bool start_enabled) : GuiPanel(App, start_enabled), fpsLog(100), msLog(100)
 {
 	name = "panel config";
-	active = true;
+	active = false;
     
     buttonActive = true;
     windowActive = App->window->active;
@@ -44,8 +44,8 @@ update_status GuiPanelConfig::Update()
     // Manage close button on configuration window
     if (!buttonActive)
     {
-        buttonActive = !buttonActive;
-        active = !active;
+        buttonActive = true;
+        active = false;
     }
 
     // 1st Config Menu: Options

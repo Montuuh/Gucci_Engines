@@ -149,7 +149,7 @@ update_status ModuleGui::MainMenu()
     {
         if (ImGui::BeginMenu("File"))
         {
-            if (ImGui::MenuItem("Quit", "ESC")) // TODO: No sé como poner el ESC que sale en el engine.exe del handout02
+            if (ImGui::MenuItem("Quit", "ESC"))
             {
                 ImGui::EndMenu();
                 return UPDATE_STOP;
@@ -159,8 +159,11 @@ update_status ModuleGui::MainMenu()
 
         if (ImGui::BeginMenu("View"))
         {
-            if (ImGui::MenuItem("Console", "1")); // Toggle console panel active bool
-            if (ImGui::MenuItem("Configuration", "4")) // Toggle configuration panel active bool
+            if (ImGui::MenuItem("Console", "F1")) // Toggle console panel active bool
+            {
+                guiPanelConsole->active = !guiPanelConsole->active; 
+            }
+            if (ImGui::MenuItem("Configuration", "F4")) // Toggle configuration panel active bool
             {
                 guiPanelConfig->active = !guiPanelConfig->active;
             }
@@ -190,9 +193,9 @@ update_status ModuleGui::InputManagement()
     update_status ret = update_status::UPDATE_CONTINUE;
 
     ////// Console and cofiguration window hotkeys
-     if (App->input->keyboard[SDL_SCANCODE_1] == KEY_DOWN)
+     if (App->input->keyboard[SDL_SCANCODE_F1] == KEY_DOWN)
          guiPanelConsole->active = !guiPanelConsole->active;
-    if (App->input->keyboard[SDL_SCANCODE_4] == KEY_DOWN)
+    if (App->input->keyboard[SDL_SCANCODE_F4] == KEY_DOWN)
         guiPanelConfig->active = !guiPanelConfig->active;
 
     ////// Quit hotkey

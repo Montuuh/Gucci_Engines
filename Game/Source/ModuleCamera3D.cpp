@@ -59,7 +59,7 @@ update_status ModuleCamera3D::Update(float dt)
 	Reference += newPos;
 
 	// Mouse motion ----------------
-	if(App->input->GetMouseButton(SDL_BUTTON_RIGHT) == KEY_REPEAT) // Rotate the camer
+	if(App->input->GetMouseButton(SDL_BUTTON_RIGHT) == KEY_REPEAT) // Rotate the camera
 	{
 		int dx = -App->input->GetMouseXMotion();
 		int dy = -App->input->GetMouseYMotion();
