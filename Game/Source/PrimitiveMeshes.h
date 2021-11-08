@@ -160,5 +160,36 @@ public:
 	}
 };
 
+class CylinderPrimitive
+{
+public:
+
+	CylinderPrimitive() {};
+	~CylinderPrimitive() { };
+
+	void DrawDirectMode()
+	{
+
+		float radius = 2, halfLength = 1;
+		int slices = 10;
+		for (int i = 0; i < slices; i++) {
+			float theta = ((float)i) * 2.0 * M_PI;
+			float nextTheta = ((float)i + 1) * 2.0 * M_PI;
+			glBegin(GL_TRIANGLE_STRIP);
+			glColor3f(1.0f, 0.0f, 1.0f);     // Right: Magenta
+			//glNormal3f(0.0, -1.0, 0.0);
+			/*vertex at middle of end */ glVertex3f(0.0, halfLength, 0.0);
+			/*vertices at edges of circle*/ glVertex3f(radius * cos(theta), halfLength, radius * sin(theta));
+			glVertex3f(radius * cos(nextTheta), halfLength, radius * sin(nextTheta));
+			/* the same vertices at the bottom of the cylinder*/
+			glVertex3f(radius * cos(nextTheta), -halfLength, radius * sin(nextTheta));
+			glVertex3f(radius * cos(theta), -halfLength, radius * sin(theta));
+			//glNormal3f(cos(theta), 0.0, sin(theta));
+			glVertex3f(0.0, -halfLength, 0.0);
+			glEnd();
+		}
+
+	}
+};
 
 #endif

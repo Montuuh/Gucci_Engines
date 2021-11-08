@@ -250,7 +250,7 @@ void ModuleRenderer3D::DrawPrimitives()
 	CubePrimitive* cube = new CubePrimitive;
 	PyramidPrimitive* pyramid = new PyramidPrimitive;
 	SpherePrimitive* sphere = new SpherePrimitive;
-
+	CylinderPrimitive* cylinder = new CylinderPrimitive;
 
 	if (cubePrimitiveDraw)
 	{
@@ -279,5 +279,15 @@ void ModuleRenderer3D::DrawPrimitives()
 	else
 	{
 		delete sphere;
+	}
+
+	if (cylinderPrimitiveDraw)
+	{
+		cylinder->DrawDirectMode();
+
+	}
+	else
+	{
+		delete cylinder;
 	}
 }
