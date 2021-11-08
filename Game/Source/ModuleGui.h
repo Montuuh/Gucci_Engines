@@ -7,6 +7,7 @@
 #include "GuiPanel.h"
 #include "GuiPanelConfig.h"
 #include "GuiPanelConsole.h"
+#include "GuiPanelPrimitives.h"
 
 #include "imgui\include\imgui.h"
 #include "imgui\include\imgui_impl_opengl2.h"
@@ -48,6 +49,7 @@ public:
 private:
 	GuiPanelConfig* guiPanelConfig;
 	GuiPanelConsole* guiPanelConsole;
+	GuiPanelPrimitives* guiPanelPrimitives;
 
 	ImGuiIO io;
 };

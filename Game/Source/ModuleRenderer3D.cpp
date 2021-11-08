@@ -174,6 +174,9 @@ update_status ModuleRenderer3D::PostUpdate(float dt)
 	// Grid Rendering
 	PrintGrid();
 
+	// Draw primitives
+	DrawPrimitives();
+
 	// Fbx rendering
 	int p = App->fbx->fbxList.size();
 	for (int i = 0; i < App->fbx->fbxList.size(); i++) {
@@ -240,7 +243,17 @@ void ModuleRenderer3D::PrintGrid()
 	glVertex3f(0.f, 10.f, 0.f);
 	glEnd();
 	glLineWidth(1.0f);
+}
 
-
-
+void ModuleRenderer3D::DrawPrimitives()
+{
+	CubePrimitive* cube = new CubePrimitive;
+	if (cubePrimitiveDraw)
+	{
+		cube->DrawDirectMode();
+	}
+	else
+	{
+		delete cube;
+	}
 }

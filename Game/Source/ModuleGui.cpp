@@ -6,8 +6,9 @@
 ModuleGui::ModuleGui(Application* app, bool start_enabled) : Module(app, start_enabled)
 {
     demoWindow = false;
-    guiPanelConfig = new GuiPanelConfig(App, false);
-    guiPanelConsole = new GuiPanelConsole(App, false);
+    guiPanelConfig = new GuiPanelConfig(App);
+    guiPanelConsole = new GuiPanelConsole(App);
+    guiPanelPrimitives = new GuiPanelPrimitives(App);
 }
 
 // Destructor
@@ -53,6 +54,7 @@ bool ModuleGui::Start()
     // Add gui panels
     AddGuiPanel(guiPanelConfig);
     AddGuiPanel(guiPanelConsole);
+    AddGuiPanel(guiPanelPrimitives);
 
     // Setting ImGui style (colors, etc)
     /*style = &ImGui::GetStyle();*/
@@ -116,9 +118,9 @@ update_status ModuleGui::Update(float dt)
 
 update_status ModuleGui::PostUpdate(float dt)
 {
+    update_status ret = update_status::UPDATE_CONTINUE;
 
-
-	return UPDATE_CONTINUE;
+	return ret;
 }
 
 void ModuleGui::RenderGui()
@@ -163,6 +165,10 @@ update_status ModuleGui::MainMenu()
             {
                 guiPanelConsole->active = !guiPanelConsole->active; 
             }
+            if (ImGui::MenuItem("Primitives", "F2")) // Toggle console panel active bool
+            {
+                guiPanelPrimitives->active = !guiPanelPrimitives->active;
+            }
             if (ImGui::MenuItem("Configuration", "F4")) // Toggle configuration panel active bool
             {
                 guiPanelConfig->active = !guiPanelConfig->active;
@@ -195,6 +201,8 @@ update_status ModuleGui::InputManagement()
     ////// Console and cofiguration window hotkeys
      if (App->input->keyboard[SDL_SCANCODE_F1] == KEY_DOWN)
          guiPanelConsole->active = !guiPanelConsole->active;
+     if (App->input->keyboard[SDL_SCANCODE_F2] == KEY_DOWN)
+         guiPanelPrimitives->active = !guiPanelPrimitives->active;
     if (App->input->keyboard[SDL_SCANCODE_F4] == KEY_DOWN)
         guiPanelConfig->active = !guiPanelConfig->active;
 

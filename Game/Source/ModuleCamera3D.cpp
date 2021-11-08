@@ -42,9 +42,9 @@ update_status ModuleCamera3D::Update(float dt)
 	// Now we can make this movememnt frame rate independant!
 
 	vec3 newPos(0,0,0);
-	float speed = 25.0f * dt;
+	float speed = 50.0f * dt;
 	if(App->input->GetKey(SDL_SCANCODE_LSHIFT) == KEY_REPEAT) // To move faster if Shift is pressed
-		speed = 50.0f * dt;
+		speed *= 2;
 
 	if(App->input->GetKey(SDL_SCANCODE_R) == KEY_REPEAT) newPos.y += speed; // Move Up
 	if(App->input->GetKey(SDL_SCANCODE_F) == KEY_REPEAT) newPos.y -= speed; // Move Down
@@ -60,7 +60,7 @@ update_status ModuleCamera3D::Update(float dt)
 	reference += newPos;
 
 	// Mouse motion ----------------
-	if(App->input->GetMouseButton(SDL_BUTTON_RIGHT) == KEY_REPEAT) // Rotate the camera
+	if(App->input->GetMouseButton(SDL_BUTTON_RIGHT) == KEY_REPEAT) // Rotate the camera with the right-click
 	{
 		int dx = -App->input->GetMouseXMotion();
 		int dy = -App->input->GetMouseYMotion();
@@ -97,7 +97,7 @@ update_status ModuleCamera3D::Update(float dt)
 	}
 	else
 	{
-		//Zoom with Mouse Scroll
+		// Mouse wheel should zoom in and out
 		float zoomSpeed = 400.0f * dt;
 		if (App->input->GetMouseZ() > 0)
 		{

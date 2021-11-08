@@ -56,6 +56,7 @@
     <ClCompile Include="Source\glmath.cpp" />
     <ClCompile Include="Source\GuiPanelConfig.cpp" />
     <ClCompile Include="Source\GuiPanelConsole.cpp" />
+    <ClCompile Include="Source\GuiPanelPrimitives.cpp" />
     <ClCompile Include="Source\Light.cpp" />
     <ClCompile Include="Source\log.cpp" />
     <ClCompile Include="Source\Main.cpp" />
@@ -334,6 +335,7 @@
     <ClInclude Include="Source\GuiPanel.h" />
     <ClInclude Include="Source\GuiPanelConfig.h" />
     <ClInclude Include="Source\GuiPanelConsole.h" />
+    <ClInclude Include="Source\GuiPanelPrimitives.h" />
     <ClInclude Include="Source\Light.h" />
     <ClInclude Include="Source\Mesh.h" />
     <ClInclude Include="Source\Module.h" />

@@ -14,9 +14,9 @@ class CubePrimitive
 {
 public:
 	CubePrimitive() {};
-	~CubePrimitive() {};
+	~CubePrimitive() { };
 
-	void Draw()
+	void DrawDirectMode()
 	{
 		glBegin(GL_QUADS); // Begin drawing the color cube with 6 quads
 		// Top face (y = 1.0f)
@@ -64,6 +64,9 @@ public:
 
 		glEnd();  // End of drawing color-cube
 	}
+
+
+
 private:
 };
 

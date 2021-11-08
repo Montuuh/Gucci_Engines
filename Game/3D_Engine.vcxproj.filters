@@ -34,6 +34,9 @@
     <Filter Include="External\devil">
       <UniqueIdentifier>{b5c0d4f0-2478-40ea-8553-2e15eb6a43ac}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Gui">
+      <UniqueIdentifier>{7273d033-23e7-435b-83f4-c99beb23c6a6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\External\imgui\include\imconfig.h">
@@ -327,7 +330,6 @@
     <ClInclude Include="Source\ModuleCamera3D.h" />
     <ClInclude Include="Source\ModuleInput.h" />
     <ClInclude Include="Source\ModuleRenderer3D.h" />
-    <ClInclude Include="Source\ModuleGui.h" />
     <ClInclude Include="Source\ModuleWindow.h" />
     <ClInclude Include="Source\Primitive.h" />
     <ClInclude Include="Source\Timer.h" />
@@ -335,7 +337,6 @@
     <ClInclude Include="Source\External\MathGeoLib\include\MathBuildConfig.h" />
     <ClInclude Include="Source\External\MathGeoLib\include\MathGeoLib.h" />
     <ClInclude Include="Source\External\MathGeoLib\include\MathGeoLibFwd.h" />
-    <ClInclude Include="Source\GuiPanel.h" />
     <ClInclude Include="Source\External\MathGeoLib\include\Geometry\AABB.h">
       <Filter>External\MathGeo\geometry</Filter>
     </ClInclude>
@@ -504,8 +505,6 @@
     <ClInclude Include="Source\External\MathGeoLib\include\Time\Clock.h">
       <Filter>External\MathGeo\Time</Filter>
     </ClInclude>
-    <ClInclude Include="Source\GuiPanelConfig.h" />
-    <ClInclude Include="Source\GuiPanelConsole.h" />
     <ClInclude Include="Source\External\glew\include\GL\eglew.h">
       <Filter>External\glew</Filter>
     </ClInclude>
@@ -655,9 +654,6 @@
       <Filter>External\assimp</Filter>
     </ClInclude>
     <ClInclude Include="Source\External\assimp\include\assimp\postprocess.h">
-      <Filter>External\assimp</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\PrimitiveMeshes.h">
       <Filter>External\assimp</Filter>
     </ClInclude>
     <ClInclude Include="Source\External\assimp\include\assimp\Profiler.h">
@@ -818,6 +814,22 @@
     <ClInclude Include="Source\External\devil\include\devil_internal_exports.h">
       <Filter>External\devil</Filter>
     </ClInclude>
+    <ClInclude Include="Source\GuiPanel.h">
+      <Filter>Gui</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GuiPanelConfig.h">
+      <Filter>Gui</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GuiPanelConsole.h">
+      <Filter>Gui</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GuiPanelPrimitives.h">
+      <Filter>Gui</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ModuleGui.h">
+      <Filter>Gui</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\PrimitiveMeshes.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\External\imgui\include\imgui.cpp">
@@ -850,7 +862,6 @@
     <ClCompile Include="Source\ModuleCamera3D.cpp" />
     <ClCompile Include="Source\ModuleInput.cpp" />
     <ClCompile Include="Source\ModuleRenderer3D.cpp" />
-    <ClCompile Include="Source\ModuleGui.cpp" />
     <ClCompile Include="Source\ModuleWindow.cpp" />
     <ClCompile Include="Source\Primitive.cpp" />
     <ClCompile Include="Source\Timer.cpp" />
@@ -948,14 +959,24 @@
     <ClCompile Include="Source\External\MathGeoLib\include\Time\Clock.cpp">
       <Filter>External\MathGeo\Time</Filter>
     </ClCompile>
-    <ClCompile Include="Source\GuiPanelConfig.cpp" />
-    <ClCompile Include="Source\GuiPanelConsole.cpp" />
     <ClCompile Include="Source\ModuleScene.cpp" />
     <ClCompile Include="Source\External\stb\stb_vorbis.c">
       <Filter>External\stb</Filter>
     </ClCompile>
     <ClCompile Include="Source\ModuleFbxLoader.cpp" />
     <ClCompile Include="Source\Mesh.cpp" />
+    <ClCompile Include="Source\GuiPanelConfig.cpp">
+      <Filter>Gui</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GuiPanelConsole.cpp">
+      <Filter>Gui</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GuiPanelPrimitives.cpp">
+      <Filter>Gui</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ModuleGui.cpp">
+      <Filter>Gui</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Source\External\SDL\include\SDL_config.h.cmake">
