@@ -248,6 +248,7 @@ void ModuleRenderer3D::PrintGrid()
 void ModuleRenderer3D::DrawPrimitives()
 {
 	CubePrimitive* cube = new CubePrimitive;
+	PyramidPrimitive* pyramid = new PyramidPrimitive;
 	if (cubePrimitiveDraw)
 	{
 		cube->DrawDirectMode();
@@ -255,5 +256,15 @@ void ModuleRenderer3D::DrawPrimitives()
 	else
 	{
 		delete cube;
+	}
+
+	if (pyramidPrimitiveDraw)
+	{
+		pyramid->DrawDirectMode();
+
+	}
+	else
+	{
+		delete pyramid;
 	}
 }

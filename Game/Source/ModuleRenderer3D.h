@@ -31,4 +31,5 @@ public:
 	mat4x4 ModelMatrix, ViewMatrix, ProjectionMatrix;
 
 	bool cubePrimitiveDraw = false;
+	bool pyramidPrimitiveDraw = false;
 };
