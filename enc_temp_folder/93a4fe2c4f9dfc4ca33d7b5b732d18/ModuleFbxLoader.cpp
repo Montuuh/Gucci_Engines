@@ -76,6 +76,7 @@ GLuint ModuleFbxLoader::vertexToGL(aiVector3D* vertices, size_t numVertices)
 	glGenBuffers(1, &verticesID);
 	glBindBuffer(GL_ARRAY_BUFFER, verticesID);
 	glBufferData(GL_ARRAY_BUFFER, vertexArraySizeinBytes, vertices, GL_STATIC_DRAW);
+	glPopMatrix();
 
 	return verticesID;
 }

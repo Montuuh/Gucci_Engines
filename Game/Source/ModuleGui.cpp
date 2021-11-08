@@ -116,12 +116,17 @@ update_status ModuleGui::Update(float dt)
 
 update_status ModuleGui::PostUpdate(float dt)
 {
+
+
+	return UPDATE_CONTINUE;
+}
+
+void ModuleGui::RenderGui()
+{
     ImGui::EndFrame();
 
     ImGui::Render();
     ImGui_ImplOpenGL2_RenderDrawData(ImGui::GetDrawData());
-
-	return UPDATE_CONTINUE;
 }
 
 bool ModuleGui::CleanUp()

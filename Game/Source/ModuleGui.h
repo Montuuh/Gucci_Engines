@@ -28,6 +28,7 @@ public:
 	update_status PreUpdate(float dt);
 	update_status Update(float dt);
 	update_status PostUpdate(float dt);
+	void RenderGui();
 	bool CleanUp();
 
 	update_status MainMenu();

@@ -2,6 +2,7 @@
 #include "Application.h"
 #include "ModuleRenderer3D.h"
 #include "PrimitiveMeshes.h"
+#include "ModuleFbxLoader.h"
 #include "SDL\include\SDL_opengl.h"
 #include "imgui\include\imgui.h"
 #include "imgui\include\imgui_impl_opengl2.h"
@@ -186,13 +187,13 @@ update_status ModuleRenderer3D::PostUpdate(float dt)
 {
 	PrintGrid();
 	
-	CubePrimitive cube;
-	//cube.Draw();
+	App->fbx->Render();
+
+	App->gui->RenderGui();
 
 	SDL_GL_SwapWindow(App->window->window);
 
 	return UPDATE_CONTINUE;
-
 }
 
 // Called before quitting

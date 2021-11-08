@@ -17,10 +17,6 @@ public:
 	~ModuleFbxLoader();
 
 	bool Start();
-	update_status PreUpdate(float dt);
-	update_status Update(float dt);
-	update_status PostUpdate(float dt);
-	bool CleanUp();
 
 	void LoadFbx(const char* path,const char* tex);
 
@@ -30,7 +26,8 @@ public:
 	GLuint textCoordToGL(aiVector3D* coord, size_t numTextCoor);
 	GLuint textureToGL(const char* path);
 
-	bool Render();
+	void Render();
+	std::vector<aiMesh*> GetFbxList();
 
 
 
@@ -39,7 +36,7 @@ public:
 
 
 private:
-
+	uint m_vertexBuffer = 0;
 };
 
 #endif
