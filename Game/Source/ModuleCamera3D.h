@@ -24,9 +24,9 @@ private:
 
 public:
 	
-	vec3 X, Y, Z, Position, Reference;
+	vec3 X, Y, Z, position, reference;
 
 private:
-
+	float distance;
 	mat4x4 ViewMatrix, ViewMatrixInverse;
 };
