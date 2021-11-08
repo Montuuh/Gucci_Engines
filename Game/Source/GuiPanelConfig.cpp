@@ -35,7 +35,7 @@ update_status GuiPanelConfig::Update()
     ImVec2 minSize = { 300, 400 };
     ImVec2 maxSize = { 450, 550 };
     ImGui::SetNextWindowSize(minSize, ImGuiCond_Once);
-    ImGui::SetNextWindowPos({ App->window->GetWidth() - minSize.x, 25 }, ImGuiCond_Once);
+    /*ImGui::SetNextWindowPos({ App->window->GetWidth() - minSize.x, 25 }, ImGuiCond_Once);*/
     ImGui::SetNextWindowSizeConstraints(minSize, maxSize);
 
     // Configuration window Begin()

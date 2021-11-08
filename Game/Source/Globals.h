@@ -32,7 +32,7 @@ enum update_status
 };
 
 // Configuration -----------
-#define SCREEN_WIDTH 1024
-#define SCREEN_HEIGHT 768
+#define SCREEN_WIDTH 1024	
+#define SCREEN_HEIGHT 780
 #define SCREEN_SIZE 1
 #define VSYNC true

@@ -185,9 +185,12 @@ update_status ModuleRenderer3D::Update(float dt)
 // PostUpdate present buffer to screen
 update_status ModuleRenderer3D::PostUpdate(float dt)
 {
+	int p = App->fbx->fbxList.size();
+	for (int i = 0; i < App->fbx->fbxList.size(); i++) {
+		App->fbx->fbxList[i]->Render();
+	}
+
 	PrintGrid();
-	
-	App->fbx->Render();
 
 	App->gui->RenderGui();
 

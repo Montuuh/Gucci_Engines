@@ -59,6 +59,7 @@
     <ClCompile Include="Source\Light.cpp" />
     <ClCompile Include="Source\log.cpp" />
     <ClCompile Include="Source\Main.cpp" />
+    <ClCompile Include="Source\Mesh.cpp" />
     <ClCompile Include="Source\ModuleCamera3D.cpp" />
     <ClCompile Include="Source\ModuleFbxLoader.cpp" />
     <ClCompile Include="Source\ModuleInput.cpp" />
@@ -327,6 +328,7 @@
     <ClInclude Include="Source\GuiPanelConfig.h" />
     <ClInclude Include="Source\GuiPanelConsole.h" />
     <ClInclude Include="Source\Light.h" />
+    <ClInclude Include="Source\Mesh.h" />
     <ClInclude Include="Source\Module.h" />
     <ClInclude Include="Source\ModuleCamera3D.h" />
     <ClInclude Include="Source\ModuleFbxLoader.h" />

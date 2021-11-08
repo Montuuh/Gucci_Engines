@@ -793,6 +793,7 @@
       <Filter>External\stb</Filter>
     </ClInclude>
     <ClInclude Include="Source\ModuleFbxLoader.h" />
+    <ClInclude Include="Source\Mesh.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\External\imgui\include\imgui.cpp">
@@ -930,6 +931,7 @@
       <Filter>External\stb</Filter>
     </ClCompile>
     <ClCompile Include="Source\ModuleFbxLoader.cpp" />
+    <ClCompile Include="Source\Mesh.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Source\External\SDL\include\SDL_config.h.cmake">
