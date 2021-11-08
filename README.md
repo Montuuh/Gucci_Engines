@@ -8,7 +8,6 @@
 
 ### Controls
 - Camera controls:
-  - Alt + right click: zoom in and out.
   - Right click to free rotate camera.
   - W: Move camera forward
   - A: Move camera left
