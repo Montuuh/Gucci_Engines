@@ -12,6 +12,7 @@
 
 class Application;
 class aiMesh;
+class aiScene;
 
 class ModuleFbxLoader : public Module
 {
@@ -24,13 +25,16 @@ public:
 	bool CleanUp();
 
 	// Load a mesh from a path
-	void LoadToScene(const char* path);
+	void LoadMeshToScene(const char* path);
 	
 	// Fbx Loader
 	std::vector<Mesh*> LoadFbx(const char* path);
 
 	// Mesh loader (vertexs, normals, indices and texture coords)
 	Mesh* ModuleFbxLoader::LoadMesh(aiMesh* aiMesh);
+
+	Texture* LoadTextureToScene(const char* path, const char* name);
+	Texture* LoadTexture(const aiScene* scene, aiMesh* mesh, const char* path, const char* name);
 
 private:
 	

@@ -136,20 +136,6 @@ bool ModuleRenderer3D::Init()
 	// Projection matrix for
 	OnResize(SCREEN_WIDTH, SCREEN_HEIGHT);
 
-
-	//GLfloat vertex[] = {
-	//						1,1,1,    -1,1,1,    -1,-1,1,    1,-1,1,        // v0-v1-v2-v3
-	//						1,1,1,     1,-1,1,    1,-1,-1,   1,1,-1,        // v0-v3-v4-v5
-	//						1,1,1,     1,1,-1,   -1,1,-1,   -1,1,1,         // v0-v5-v6-v1
-	//					   -1,1,1,    -1,1,-1,   -1,-1,-1,  -1,-1,1,        // v1-v6-v7-v2
-	//					   -1,-1,-1,   1,-1,-1,   1,-1,1,   -1,-1,1,        // v7-v4-v3-v2
-	//						1,-1,-1,  -1,-1,-1,  -1,1,-1,    1,1,-1 };        // v4-v7-v6-v5
-
-	//unsigned int my_id = 0;
-	//glGenBuffersARB(1, (GLuint*)&my_id);
-	//glBindBuffer(GL_ARRAY_BUFFER, my_id);
-	//glBufferData(GL_ARRAY_BUFFER, sizeof(vertex), vertex, GL_STATIC_DRAW);
-
 	App->camera->LookAt(vec3(0.f, 5.f, 0.f));
 
 	return ret;

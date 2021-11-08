@@ -145,6 +145,13 @@
     <ClInclude Include="Source\External\assimp\include\assimp\Vertex.h" />
     <ClInclude Include="Source\External\assimp\include\assimp\XMLTools.h" />
     <ClInclude Include="Source\External\assimp\include\assimp\ZipArchiveIOSystem.h" />
+    <ClInclude Include="Source\External\devil\include\devil_internal_exports.h" />
+    <ClInclude Include="Source\External\devil\include\il.h" />
+    <ClInclude Include="Source\External\devil\include\ilu.h" />
+    <ClInclude Include="Source\External\devil\include\ilut.h" />
+    <ClInclude Include="Source\External\devil\include\ilut_config.h" />
+    <ClInclude Include="Source\External\devil\include\ilu_region.h" />
+    <ClInclude Include="Source\External\devil\include\il_wrap.h" />
     <ClInclude Include="Source\External\glew\include\GL\eglew.h" />
     <ClInclude Include="Source\External\glew\include\GL\glew.h" />
     <ClInclude Include="Source\External\glew\include\GL\glxew.h" />
@@ -414,7 +421,7 @@
       <SubSystem>Windows</SubSystem>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
       <AdditionalLibraryDirectories>$(SolutionDir)Game\Source\External\glew\lib\libx86;$(SolutionDir)Game\Source\External\SDL\libx86;$(SolutionDir)Game\Source\External\MathGeoLib\libx86\Debug;$(SolutionDir)Game\Source\External\assimp\libx86;$(SolutionDir)Game\Source\External\devil\libx86</AdditionalLibraryDirectories>
-      <AdditionalDependencies>%(AdditionalDependencies);SDL2.lib;SDL2main.lib;SDL2test.lib;Shell32.lib;MathGeoLib.lib;glew32.lib;glew32s.lib;DevIL.lib</AdditionalDependencies>
+      <AdditionalDependencies>%(AdditionalDependencies);SDL2.lib;SDL2main.lib;SDL2test.lib;Shell32.lib;MathGeoLib.lib;glew32.lib;glew32s.lib;DevIL.lib;ILU.lib;ILUT.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">

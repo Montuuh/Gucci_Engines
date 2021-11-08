@@ -31,6 +31,9 @@
     <Filter Include="External\stb">
       <UniqueIdentifier>{f7df9874-909c-4f70-bf97-d22dcc280a3e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="External\devil">
+      <UniqueIdentifier>{b5c0d4f0-2478-40ea-8553-2e15eb6a43ac}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\External\imgui\include\imconfig.h">
@@ -794,6 +797,27 @@
     </ClInclude>
     <ClInclude Include="Source\ModuleFbxLoader.h" />
     <ClInclude Include="Source\Mesh.h" />
+    <ClInclude Include="Source\External\devil\include\il.h">
+      <Filter>External\devil</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\External\devil\include\il_wrap.h">
+      <Filter>External\devil</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\External\devil\include\ilu.h">
+      <Filter>External\devil</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\External\devil\include\ilu_region.h">
+      <Filter>External\devil</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\External\devil\include\ilut.h">
+      <Filter>External\devil</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\External\devil\include\ilut_config.h">
+      <Filter>External\devil</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\External\devil\include\devil_internal_exports.h">
+      <Filter>External\devil</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\External\imgui\include\imgui.cpp">

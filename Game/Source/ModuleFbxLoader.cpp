@@ -5,6 +5,11 @@
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb/stb_image.h";
 
+
+#include "devil/include/il.h"
+#include "devil/include/ilu.h"
+#include "devil/include/ilut.h"
+
 ModuleFbxLoader::ModuleFbxLoader(Application* app, bool start_enabled) : Module(app, start_enabled)
 {}
 
@@ -15,6 +20,11 @@ bool ModuleFbxLoader::Init()
 {
 	bool ret = true;
 
+	// Call for devil init
+	ilInit();
+	iluInit();
+	ilutInit();
+	ilutRenderer(ILUT_OPENGL);
 
 	return ret;
 }
@@ -23,7 +33,8 @@ bool ModuleFbxLoader::Start()
 {
 	bool ret = true;
 
-	LoadToScene("Assets/Meshes/BakerHouse.fbx");
+	LoadMeshToScene("Assets/Meshes/warrior.FBX");
+	LoadMeshToScene("Assets/Meshes/BakerHouse.fbx");
 
 	return ret;
 }
@@ -36,7 +47,7 @@ bool ModuleFbxLoader::CleanUp()
 	return ret;
 }
 
-void ModuleFbxLoader::LoadToScene(const char* path)
+void ModuleFbxLoader::LoadMeshToScene(const char* path)
 {
 	std::vector<Mesh*> meshList = LoadFbx(path);
 	for (int i = 0; i < meshList.size(); i++) 
@@ -56,7 +67,8 @@ std::vector<Mesh*> ModuleFbxLoader::LoadFbx(const char*path)
 		{
 			Mesh* mesh = LoadMesh(scene->mMeshes[i]);
 			if (mesh != nullptr) fbxList.push_back(mesh);
-
+			Texture* Tex = LoadTexture(scene, scene->mMeshes[i], "Assets/Textures/Baker_house.png", "BakerHouse");
+			mesh->SetTexture(Tex);
 		}
 		aiReleaseImport(scene);
 	}
@@ -124,4 +136,46 @@ Mesh* ModuleFbxLoader::LoadMesh(aiMesh* aiMesh)
 		return mesh;
 	}
 	return nullptr;
+}
+
+Texture* ModuleFbxLoader::LoadTextureToScene(const char* path, const char* name)
+{
+	uint id = 0;
+	ilGenImages(1, &id);
+	ilBindImage(id);
+
+	ilEnable(IL_ORIGIN_SET);
+	ilOriginFunc(IL_ORIGIN_LOWER_LEFT);
+
+	Texture* texture = new Texture();
+
+	// TODO:: Change to ilLoadL
+	if (ilLoadImage(path))
+	{
+		if (ilConvertImage(IL_RGBA, IL_UNSIGNED_BYTE))
+		{
+			texture->id = id;
+			texture->name = name;
+			texture->data = ilGetData();
+			texture->width = ilGetInteger(IL_IMAGE_WIDTH);
+			texture->height = ilGetInteger(IL_IMAGE_HEIGHT);
+			texture->format = texture->formatUnsigned = ilGetInteger(IL_IMAGE_FORMAT);
+			texture->path = path;
+		}
+
+	}
+
+	return texture;
+}
+
+Texture* ModuleFbxLoader::LoadTexture(const aiScene* scene, aiMesh* mesh, const char* path, const char* name)
+{
+	aiMaterial* material = scene->mMaterials[mesh->mMaterialIndex];
+	aiString texPath;
+	aiGetMaterialTexture(material, aiTextureType::aiTextureType_DIFFUSE, mesh->mMaterialIndex, &texPath);
+
+	Texture* texture = new Texture();
+
+	texture = LoadTextureToScene(path, name);
+	return texture;
 }

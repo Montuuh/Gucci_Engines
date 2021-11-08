@@ -7,6 +7,27 @@
 #include <gl/GLU.h>
 #include <gl/GL.h>
 
+
+typedef unsigned char GLubyte;
+struct Texture
+{
+	std::string name = "defaultTexture";
+	std::string path = "Assets/Textures/";
+	uint id = -1;
+	int format = -1;
+	uint formatUnsigned = -1;
+	GLubyte* data = nullptr;
+	int width = -1;
+	int height = -1;
+
+	~Texture()
+	{
+		name.clear();
+		path.clear();
+		data = nullptr;
+	}
+};
+
 class Mesh
 {
 public:
@@ -35,10 +56,11 @@ public:
 	// Disable states and remove buffers
 	void EndRender() const;
 
-	virtual void InnerRender() const;
-	void DrawVertexNormals() const;
-	void DrawFaceNormals() const;
+	// virtual void InnerRender() const;
+	/*void DrawVertexNormals() const;
+	void DrawFaceNormals() const;*/
 
+	void SetTexture(Texture* texture);
 
 private:
 
@@ -58,8 +80,10 @@ public:
 	float* normals = nullptr;
 
 	// Texture Coords variables
+	unsigned int textureID = -1;
 	unsigned int textureBuffer = 0;
 	float* textureCoordinates = nullptr;
+	Texture* texture = nullptr;
 
 	mat4x4 transform;
 	bool wire;
