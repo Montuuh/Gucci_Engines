@@ -33,7 +33,7 @@ bool ModuleFbxLoader::Start()
 {
 	bool ret = true;
 
-	// LoadFbxToScene("Assets/Meshes/BakerHouse.fbx", "Assets/Textures/Baker_house.png");
+	LoadFbxToScene("Assets/Meshes/BakerHouse.fbx", "Assets/Textures/Baker_house.png");
 
 	return ret;
 }

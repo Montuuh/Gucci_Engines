@@ -13,6 +13,7 @@
   <ItemGroup>
     <ClCompile Include="Source\Application.cpp" />
     <ClCompile Include="Source\Color.cpp" />
+    <ClCompile Include="Source\External\gpudetect\include\DeviceId.cpp" />
     <ClCompile Include="Source\External\imgui\include\imgui.cpp" />
     <ClCompile Include="Source\External\imgui\include\imgui_demo.cpp" />
     <ClCompile Include="Source\External\imgui\include\imgui_draw.cpp" />
@@ -157,6 +158,8 @@
     <ClInclude Include="Source\External\glew\include\GL\glew.h" />
     <ClInclude Include="Source\External\glew\include\GL\glxew.h" />
     <ClInclude Include="Source\External\glew\include\GL\wglew.h" />
+    <ClInclude Include="Source\External\gpudetect\include\DeviceId.h" />
+    <ClInclude Include="Source\External\gpudetect\include\dxgi1_4.h" />
     <ClInclude Include="Source\External\imgui\include\imconfig.h" />
     <ClInclude Include="Source\External\imgui\include\imgui.h" />
     <ClInclude Include="Source\External\imgui\include\imgui_impl_opengl2.h" />
@@ -443,8 +446,8 @@
       <OptimizeReferences>true</OptimizeReferences>
       <SubSystem>Windows</SubSystem>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
-      <AdditionalLibraryDirectories>$(SolutionDir)Game\Source\External\SDL\libx86;$(SolutionDir)Game\Source\External\MathGeoLib\libx86\Debug</AdditionalLibraryDirectories>
-      <AdditionalDependencies>%(AdditionalDependencies);SDL2.lib;SDL2main.lib;SDL2test.lib;Shell32.lib;MathGeoLib.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)Game\Source\External\glew\lib\libx86;$(SolutionDir)Game\Source\External\SDL\libx86;$(SolutionDir)Game\Source\External\MathGeoLib\libx86\Debug;$(SolutionDir)Game\Source\External\assimp\libx86;$(SolutionDir)Game\Source\External\devil\libx86</AdditionalLibraryDirectories>
+      <AdditionalDependencies>%(AdditionalDependencies);SDL2.lib;SDL2main.lib;SDL2test.lib;Shell32.lib;MathGeoLib.lib;glew32.lib;glew32s.lib;DevIL.lib;ILU.lib;ILUT.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

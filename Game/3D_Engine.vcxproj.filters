@@ -37,6 +37,9 @@
     <Filter Include="Gui">
       <UniqueIdentifier>{7273d033-23e7-435b-83f4-c99beb23c6a6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="External\gpudetect">
+      <UniqueIdentifier>{5393b600-be13-42e4-88f1-c9345db07e01}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\External\imgui\include\imconfig.h">
@@ -830,6 +833,12 @@
       <Filter>Gui</Filter>
     </ClInclude>
     <ClInclude Include="Source\PrimitiveMeshes.h" />
+    <ClInclude Include="Source\External\gpudetect\include\DeviceId.h">
+      <Filter>External\gpudetect</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\External\gpudetect\include\dxgi1_4.h">
+      <Filter>External\gpudetect</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\External\imgui\include\imgui.cpp">
@@ -976,6 +985,9 @@
     </ClCompile>
     <ClCompile Include="Source\ModuleGui.cpp">
       <Filter>Gui</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\External\gpudetect\include\DeviceId.cpp">
+      <Filter>External\gpudetect</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

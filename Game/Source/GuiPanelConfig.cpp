@@ -2,6 +2,8 @@
 #include "Application.h"
 #include "GuiPanelConfig.h"
 #include "ModuleWindow.h"
+#include "gpudetect/include/DeviceId.h"
+#include "ModuleInput.h"
 
 #include "imgui\include\imgui.h"
 
@@ -19,6 +21,34 @@ GuiPanelConfig::GuiPanelConfig(Application* App, bool start_enabled) : GuiPanel(
 GuiPanelConfig::~GuiPanelConfig()
 {
 
+}
+
+bool GuiPanelConfig::Init()
+{
+    
+    return true;
+}
+
+bool GuiPanelConfig::Start()
+{
+    SDL_GetVersion(&sdlVersion);
+
+    cpuCount = SDL_GetCPUCount();
+    cpuSize = SDL_GetCPUCacheLineSize();
+
+    ramSize = SDL_GetSystemRAM() / 1000.0f;
+
+    std::wstring brand;
+    if (getGraphicsDeviceInfo(&vendorId, &deviceId, &brand, &vramBudget, &vramUsage, &vramAvailable, &vramReserved))
+    {
+        sprintf_s(brandGpu, 250, "%S", brand.c_str());
+        vramBudget /= 1024.0f * 1024.0f;
+        vramUsage /= 1024.0f * 1024.0f;
+        vramAvailable /= 1024.0f * 1024.0f;
+        vramReserved /= 1024.0f * 1024.0f;
+    }
+
+    return true;
 }
 
 update_status GuiPanelConfig::PreUpdate()
@@ -215,6 +245,17 @@ update_status GuiPanelConfig::Update()
         {
 
         }
+        ImGui::Text("Mouse Position:");
+        ImGui::SameLine();
+        ImGui::TextColored({ 255, 255, 0, 255 }, "%.0f, %.0f", ImGui::GetIO().MousePos.x, ImGui::GetIO().MousePos.y);
+        ImGui::Text("Mouse Motion:");
+        ImGui::SameLine();
+        ImGui::TextColored({ 255, 255, 0, 255 }, "%d, %d", App->input->GetMouseXMotion(), App->input->GetMouseYMotion());
+        ImGui::Text("Mouse Wheel:");
+        ImGui::SameLine();
+        ImGui::TextColored({ 255, 255, 0, 255 }, "%d", App->input->GetMouseZ());
+        ImGui::Separator();
+
     }
 
     // 5th Config Menu (With title): Hardware
@@ -225,6 +266,37 @@ update_status GuiPanelConfig::Update()
         {
 
         }
+
+        ImGui::Text("SDL Version:");
+        ImGui::SameLine();
+        ImGui::TextColored({ 255, 255, 0, 255 }, "%d.%d.%d", sdlVersion.major, sdlVersion.minor, sdlVersion.patch);
+        ImGui::Separator();
+        ImGui::Text("CPUs:");
+        ImGui::SameLine();
+        ImGui::TextColored({ 255, 255, 0, 255 }, "%d (Cache: %dkb)", cpuCount, cpuSize);
+        ImGui::Text("System RAM:");
+        ImGui::SameLine();
+        ImGui::TextColored({ 255, 255, 0, 255 }, "%.1fGb", ramSize);
+        ImGui::Text("Caps:");
+        ImGui::Separator();
+        ImGui::Text("GPU:");
+        ImGui::SameLine();
+        ImGui::TextColored({ 255, 255, 0, 255 }, "vendor %d device %d", vendorId, deviceId);
+        ImGui::Text("Brand:");
+        ImGui::SameLine();
+        ImGui::TextColored({ 255, 255, 0, 255 }, "%s", brandGpu);
+        ImGui::Text("VRAM Budget:");
+        ImGui::SameLine();
+        ImGui::TextColored({ 255, 255, 0, 255 }, "%.1f Mb", (float)vramBudget);
+        ImGui::Text("VRAM Usage:");
+        ImGui::SameLine();
+        ImGui::TextColored({ 255, 255, 0, 255 }, "%.1f Mb", (float)vramUsage);
+        ImGui::Text("VRAM Available:");
+        ImGui::SameLine();
+        ImGui::TextColored({ 255, 255, 0, 255 }, "%.1f Mb", (float)vramAvailable);
+        ImGui::Text("VRAM Reserved:");
+        ImGui::SameLine();
+        ImGui::TextColored({ 255, 255, 0, 255 }, "%.1f Mb", (float)vramReserved);
     }
 
     // Configuration window End()

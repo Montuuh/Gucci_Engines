@@ -9,6 +9,9 @@ public:
 
 	GuiPanelConfig(Application* App, bool start_enabled = false);
 	~GuiPanelConfig();
+
+	bool Init();
+	bool Start();
 		
 	update_status PreUpdate();
 	update_status Update();
@@ -43,6 +46,17 @@ private:
 	// Hardware variables
 	bool hardwareActive;
 
+	SDL_version sdlVersion;
+	
+	int cpuCount;
+	int cpuSize;
+
+	float ramSize;
+
+	//GPU
+	uint vendorId, deviceId;
+	char brandGpu[250];
+	unsigned long long vramBudget, vramUsage, vramAvailable, vramReserved;
 };
 
 #endif

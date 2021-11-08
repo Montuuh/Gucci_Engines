@@ -59,6 +59,19 @@ bool ModuleGui::Start()
     // Setting ImGui style (colors, etc)
     /*style = &ImGui::GetStyle();*/
     /*style->Colors[ImGuiCol_Text] = */
+
+    // Call every Start of every gui panel
+    std::vector<GuiPanel*>::iterator it = list_panels.begin();
+    while (it != list_panels.end())
+    {
+        if ((*it)->active)
+        {
+            ret = (*it)->Start();
+            if (ret == update_status::UPDATE_CONTINUE);
+        }
+        it++;
+    }
+
     return ret;
 }
 
