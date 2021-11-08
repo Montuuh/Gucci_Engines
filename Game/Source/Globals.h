@@ -12,6 +12,7 @@
 #include <string>
 
 #define LOG(format, ...) log(__FILE__, __LINE__, format, __VA_ARGS__);
+#define CONSOLE_LOG_LIMIT 200
 
 void log(const char file[], int line, const char* format, ...);
 
@@ -36,3 +37,6 @@ enum update_status
 #define SCREEN_HEIGHT 780
 #define SCREEN_SIZE 1
 #define VSYNC true
+
+std::string GetConsoleText(int i);
+int GetConsoleSize();
