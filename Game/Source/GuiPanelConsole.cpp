@@ -32,7 +32,6 @@ update_status GuiPanelConsole::Update()
     ImVec2 maxSize = { 700, 450 };
     ImGui::SetNextWindowSize(minSize, ImGuiCond_Once);
     ImGui::SetNextWindowPos({ 0, 25 }, ImGuiCond_Once);
-    ImGui::SetNextWindowSizeConstraints(minSize, maxSize);
 
     // Console window Begin()
     ImGui::Begin("Console", &buttonActive, ImGuiWindowFlags_NoFocusOnAppearing); 
@@ -42,6 +41,11 @@ update_status GuiPanelConsole::Update()
     {
         buttonActive = true;
         active = false;
+    }
+
+    for (int i = 0; i < GetConsoleSize(); i++)
+    {
+        ImGui::Text(GetConsoleText(i).c_str());
     }
 
     // Console window End()
